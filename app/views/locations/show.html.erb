@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Urn:</strong>
+  <%= @location.urn %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @location.name %>
+</p>
+
+<p>
+  <strong>Non mobile number:</strong>
+  <%= @location.non_mobile_number %>
+</p>
+
+<p>
+  <strong>Mobile number:</strong>
+  <%= @location.mobile_number %>
+</p>
+
+<p>
+  <strong>Ppc number:</strong>
+  <%= @location.ppc_number %>
+</p>
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

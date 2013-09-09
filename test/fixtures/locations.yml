@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  urn: 1
+  name: MyString
+  non_mobile_number: MyString
+  mobile_number: MyString
+  ppc_number: MyString
+
+two:
+  urn: 1
+  name: MyString
+  non_mobile_number: MyString
+  mobile_number: MyString
+  ppc_number: MyString

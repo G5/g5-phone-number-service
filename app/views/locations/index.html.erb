@@ -1,0 +1,35 @@
+<h1>Listing locations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Urn</th>
+      <th>Name</th>
+      <th>Non mobile number</th>
+      <th>Mobile number</th>
+      <th>Ppc number</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @locations.each do |location| %>
+      <tr>
+        <td><%= location.urn %></td>
+        <td><%= location.name %></td>
+        <td><%= location.non_mobile_number %></td>
+        <td><%= location.mobile_number %></td>
+        <td><%= location.ppc_number %></td>
+        <td><%= link_to 'Show', location %></td>
+        <td><%= link_to 'Edit', edit_location_path(location) %></td>
+        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Location', new_location_path %>
