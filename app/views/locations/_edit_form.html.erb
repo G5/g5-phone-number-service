@@ -1,0 +1,42 @@
+<% if location.errors.any? %>
+  <tr id="error_explanation">
+    <td colspan="6">
+      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% location.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </td>
+  </tr>
+<% end %>
+
+<tr>
+  <%= form_for(location) do |f| %>
+    <td class="field">
+      <%= f.label :urn %><br>
+      <%= f.number_field :urn %>
+    </td>
+    <td class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </td>
+    <td class="field">
+      <%= f.label :non_mobile_number %><br>
+      <%= f.text_field :non_mobile_number %>
+    </td>
+    <td class="field">
+      <%= f.label :mobile_number %><br>
+      <%= f.text_field :mobile_number %>
+    </td>
+    <td class="field">
+      <%= f.label :ppc_number %><br>
+      <%= f.text_field :ppc_number %>
+    </td>
+    <td class="actions">
+      <%= f.submit %>
+    </td>
+  <% end %>
+  <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
