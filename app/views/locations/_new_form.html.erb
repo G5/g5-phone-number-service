@@ -1,37 +1,47 @@
-<%= form_for(@location) do |f| %>
-  <% if @location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+<div class="panel panel-primary">
+  <div class="panel-heading">Create a new location</div>
+  <div class="panel-body">
+    <%= form_for @location, html: {role: 'form'} do |f| %>
 
-      <ul>
-      <% @location.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <% if @location.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+          <ul>
+          <% @location.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :urn %><br>
-    <%= f.number_field :urn %>
+      <div class="row">
+
+        <div class="col-md-2 form-group">
+          <%= f.label :urn, "URN" %>
+          <%= f.text_field :urn, class: "form-control", required: true %>
+        </div>
+        <div class="col-md-2 form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control", required: true %>
+        </div>
+        <div class="col-md-2 form-group">
+          <%= f.label :default_number, "Default Number" %>
+          <%= f.text_field :default_number, class: "form-control", required: true %>
+        </div>
+        <div class="col-md-2 form-group">
+          <%= f.label :mobile_number, "Mobile Number" %>
+          <%= f.text_field :mobile_number, class: "form-control" %>
+        </div>
+        <div class="col-md-2 form-group">
+          <%= f.label :ppc_number, "PPC Number" %>
+          <%= f.text_field :ppc_number, class: "form-control" %>
+        </div>
+        <div class="col-md-2 actions">
+          <%= f.submit(class: "btn btn-primary") %>
+        </div>
+
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :non_mobile_number %><br>
-    <%= f.text_field :non_mobile_number %>
-  </div>
-  <div class="field">
-    <%= f.label :mobile_number %><br>
-    <%= f.text_field :mobile_number %>
-  </div>
-  <div class="field">
-    <%= f.label :ppc_number %><br>
-    <%= f.text_field :ppc_number %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

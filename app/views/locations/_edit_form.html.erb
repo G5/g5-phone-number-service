@@ -13,30 +13,30 @@
 <% end %>
 
 <tr>
-  <%= form_for(location) do |f| %>
+  <%= form_for location, html: {role: 'form'} do |f| %>
     <td class="field">
-      <%= f.label :urn %><br>
-      <%= f.number_field :urn %>
+      <%= f.label :urn, class: "sr-only" %>
+      <%= f.text_area :urn, class: "form-control", rows: "1", required: true %>
     </td>
     <td class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+      <%= f.label :name, class: "sr-only" %>
+      <%= f.text_area :name, class: "form-control", rows: "1", required: true %>
     </td>
     <td class="field">
-      <%= f.label :non_mobile_number %><br>
-      <%= f.text_field :non_mobile_number %>
+      <%= f.label :default_number, class: "sr-only" %>
+      <%= f.text_area :default_number, class: "form-control", rows: "1", required: true %>
     </td>
     <td class="field">
-      <%= f.label :mobile_number %><br>
-      <%= f.text_field :mobile_number %>
+      <%= f.label :mobile_number, class: "sr-only" %>
+      <%= f.text_area :mobile_number, class: "form-control", rows: "1" %>
     </td>
     <td class="field">
-      <%= f.label :ppc_number %><br>
-      <%= f.text_field :ppc_number %>
+      <%= f.label :ppc_number, class: "sr-only" %>
+      <%= f.text_area :ppc_number, class: "form-control", rows: "1" %>
     </td>
     <td class="actions">
-      <%= f.submit %>
+      <%= f.submit(class: "btn btn-default") %>
     </td>
   <% end %>
-  <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
 </tr>

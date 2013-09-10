@@ -1,26 +1,32 @@
-<h1>Listing locations</h1>
+<div class="page-header">
+  <div class="container">
+    <h1>Locations</h1>
+  </div>
+</div>
 
-<%= render 'new_form' %>
+<div class="container">
 
-<table>
-  <thead>
-    <tr>
-      <th>URN</th>
-      <th>Name</th>
-      <th>Non-mobile Number</th>
-      <th>Mobile Number</th>
-      <th>PPC Number</th>
-      <th colspan="2">Actions</th>
-    </tr>
-  </thead>
+  <%= render 'new_form' %>
 
-  <tbody>
 
-    <% @locations.each do |location| %>
-      <%= render 'edit_form', location: location %>
-    <% end %>
+  <table class="table table-striped table-responsive">
+    <thead>
+      <tr>
+        <th>URN</th>
+        <th>Name</th>
+        <th>Default Number</th>
+        <th>Mobile Number</th>
+        <th>PPC Number</th>
+        <th colspan="2">Actions</th>
+      </tr>
+    </thead>
 
-  </tbody>
-</table>
+    <tbody>
 
-<%= link_to 'New Location', new_location_path %>
+      <% @locations.each do |location| %>
+        <%= render 'edit_form', location: location %>
+      <% end %>
+
+    </tbody>
+  </table>
+</div>

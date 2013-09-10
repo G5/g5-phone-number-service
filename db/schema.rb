@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(version: 20130909212537) do
 
   create_table "locations", force: true do |t|
-    t.integer  "urn"
+    t.string   "urn"
     t.string   "name"
-    t.string   "non_mobile_number"
+    t.string   "default_number"
     t.string   "mobile_number"
     t.string   "ppc_number"
     t.datetime "created_at"

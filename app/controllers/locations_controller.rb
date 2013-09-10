@@ -56,6 +56,6 @@ class LocationsController < ApplicationController
     end
 
     def location_params
-      params.require(:location).permit(:urn, :name, :non_mobile_number, :mobile_number, :ppc_number)
+      params.require(:location).permit(:urn, :name, :default_number, :mobile_number, :ppc_number)
     end
 end
