@@ -18,9 +18,30 @@ class LocationsController < ApplicationController
   def update
     success = nil
 
-    puts "*" * 80
-    puts params
-    puts "*" * 80
+    locations = {}
+
+    # build up nested locations hash
+    params.each do |k, v|
+      location = {}
+
+      if k =~ /location_/
+        k.match(/location_(\w+)--(\w+-*\w+)/)
+
+        if locations[$1].nil?
+          locations[$1] = {}
+        end
+
+        locations[$1][$2] = v
+      end
+
+    end
+
+    locations.each do |k,v|
+      Location.where(urn: k).first.update_attributes!(v)
+    end
+
+    # naively assumes all locations saved
+    success = true
 
     if success
       redirect_to root_path, notice: 'Locations were updated.'
