@@ -15,7 +15,7 @@
 <tr id="<%= location.urn %>-<%= location.name.downcase %>" class="h-card">
   <td class="field">
     <%= label_tag "urn--#{location.urn}", "URN", class: "sr-only" %>
-    <%= text_area_tag :urn, location.urn, id: "XXurnXX#{location.urn}", class: "form-control p-uid", rows: "1", required: true %>
+    <%= text_area_tag :urn, location.urn, id: "urn--#{location.urn}", class: "form-control p-uid", rows: "1", required: true %>
   </td>
   <td class="field">
     <%= label_tag "name--#{location.name}", "Name", class: "sr-only" %>
