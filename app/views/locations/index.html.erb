@@ -6,11 +6,18 @@
 
 <div class="container">
 
-  <% unless flash[:notice].blank? %>
-    <div id="notice" class="alert alert-success">
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
       <%= flash[:notice] %>
     </div>
   <% end %>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
 
   <%= render 'new_form' %>
 

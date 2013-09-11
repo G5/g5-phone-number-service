@@ -16,7 +16,7 @@ class LocationsController < ApplicationController
   end
 
   def update
-    success = nil
+    success = false
 
     locations = {}
 
@@ -46,7 +46,7 @@ class LocationsController < ApplicationController
     if success
       redirect_to root_path, notice: 'Locations were updated.'
     else
-      redirect_to root_path, notice: 'Locations were NOT updated.'
+      redirect_to root_path, alert: 'Locations were NOT updated.'
     end
   end
 
