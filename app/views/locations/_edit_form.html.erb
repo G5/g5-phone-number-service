@@ -13,30 +13,25 @@
 <% end %>
 
 <tr id="<%= location.urn %>-<%= location.name.downcase %>" class="h-card">
-  <%= form_for location, html: {role: 'form'} do |f| %>
-    <td class="field">
-      <%= f.label :urn, class: "sr-only" %>
-      <%= f.text_area :urn, class: "form-control p-uid", rows: "1", required: true %>
-    </td>
-    <td class="field">
-      <%= f.label :name, class: "sr-only" %>
-      <%= f.text_area :name, class: "form-control p-name", rows: "1", required: true %>
-    </td>
-    <td class="field">
-      <%= f.label :default_number, class: "sr-only" %>
-      <%= f.text_area :default_number, class: "form-control p-tel p-tel-default", rows: "1", required: true %>
-    </td>
-    <td class="field">
-      <%= f.label :mobile_number, class: "sr-only" %>
-      <%= f.text_area :mobile_number, class: "form-control p-tel p-tel-mobile", rows: "1" %>
-    </td>
-    <td class="field">
-      <%= f.label :ppc_number, class: "sr-only" %>
-      <%= f.text_area :ppc_number, class: "form-control p-tel p-tel-ppc", rows: "1" %>
-    </td>
-    <td class="actions">
-      <%= f.submit(class: "btn btn-default") %>
-    </td>
-  <% end %>
+  <td class="field">
+    <%= label_tag "urn--#{location.urn}", "URN", class: "sr-only" %>
+    <%= text_area_tag :urn, location.urn, id: "XXurnXX#{location.urn}", class: "form-control p-uid", rows: "1", required: true %>
+  </td>
+  <td class="field">
+    <%= label_tag "name--#{location.name}", "Name", class: "sr-only" %>
+    <%= text_area_tag :name, location.name, id: "name--#{location.name}", class: "form-control p-name", rows: "1", required: true %>
+  </td>
+  <td class="field">
+    <%= label_tag "default_number--#{location.default_number}", "Default Number", class: "sr-only" %>
+    <%= text_area_tag :default_number, location.default_number, id: "default_number--#{location.default_number}", class: "form-control p-tel p-tel-default", rows: "1", required: true %>
+  </td>
+  <td class="field">
+    <%= label_tag "mobile_number--#{location.mobile_number}", "Mobile Number", class: "sr-only" %>
+    <%= text_area_tag :mobile_number, location.mobile_number, id: "mobile_number--#{location.mobile_number}", class: "form-control p-tel p-tel-mobile", rows: "1" %>
+  </td>
+  <td class="field">
+    <%= label_tag "ppc_number--#{location.ppc_number}", "PPC Number", class: "sr-only" %>
+    <%= text_area_tag :ppc_number, location.ppc_number, id: "ppc_number--#{location.ppc_number}", class: "form-control p-tel p-tel-ppc", rows: "1" %>
+  </td>
   <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
 </tr>

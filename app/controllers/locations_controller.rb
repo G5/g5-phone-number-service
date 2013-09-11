@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:update, :destroy]
+  before_action :set_location, only: [:destroy]
 
   def index
     @locations = Location.all
@@ -16,10 +16,16 @@ class LocationsController < ApplicationController
   end
 
   def update
-    if @location.update(location_params)
-      redirect_to root_path, notice: 'Location was successfully updated.'
+    success = nil
+
+    puts "*" * 80
+    puts params
+    puts "*" * 80
+
+    if success
+      redirect_to root_path, notice: 'Locations were updated.'
     else
-      redirect_to root_path, notice: 'Location was NOT successfully updated.'
+      redirect_to root_path, notice: 'Locations were NOT updated.'
     end
   end
 

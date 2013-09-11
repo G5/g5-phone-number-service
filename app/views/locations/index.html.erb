@@ -6,27 +6,37 @@
 
 <div class="container">
 
-  <%= render 'new_form' %>
+  <% unless flash[:notice].blank? %>
+    <div id="notice" class="alert alert-success">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
 
+  <%# render 'new_form' %>
 
-  <table class="table table-striped table-responsive">
-    <thead>
-      <tr>
-        <th>URN</th>
-        <th>Name</th>
-        <th>Default Number</th>
-        <th>Mobile Number</th>
-        <th>PPC Number</th>
-        <th colspan="2">Actions</th>
-      </tr>
-    </thead>
+  <%= form_tag locations_update_path do %>
+    <table class="table table-striped table-responsive">
+      <thead>
+        <tr>
+          <th>URN</th>
+          <th>Name</th>
+          <th>Default Number</th>
+          <th>Mobile Number</th>
+          <th>PPC Number</th>
+          <th colspan="2">Actions</th>
+        </tr>
+      </thead>
 
-    <tbody>
+      <tbody>
+        <% @locations.each do |location| %>
+          <%= render 'edit_form', location: location %>
+        <% end %>
+      </tbody>
+    </table>
 
-      <% @locations.each do |location| %>
-        <%= render 'edit_form', location: location %>
-      <% end %>
+    <div class="actions">
+      <%= submit_tag "Save", class: "btn btn-default" %>
+    </div>
+  <% end %>
 
-    </tbody>
-  </table>
 </div>
