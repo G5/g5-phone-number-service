@@ -12,7 +12,7 @@
   </tr>
 <% end %>
 
-<tr id="<%= location.urn %>-<%= location.name.downcase %>" class="h-card">
+<tr id="<%= location.urn %>" class="h-card">
   <td class="field">
     <%= label_tag "urn--#{location.urn}", "URN", class: "sr-only" %>
     <%= text_area_tag "location_#{location.urn}--urn", location.urn, id: "urn--#{location.urn}", class: "form-control p-uid", rows: "1", required: true %>
