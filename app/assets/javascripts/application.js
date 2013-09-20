@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $('textarea').keypress(function(e) {
+    if (e.keyCode == 13) {
+      e.preventDefault();
+    }
+  });
+});
+

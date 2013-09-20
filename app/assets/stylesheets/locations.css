@@ -1,3 +1,9 @@
 .new_location .btn {
   margin-top: 25px;
 }
+
+textarea {
+  overflow: hidden;
+  resize: none;
+  white-space: nowrap;
+}
