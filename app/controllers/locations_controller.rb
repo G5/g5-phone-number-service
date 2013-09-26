@@ -16,7 +16,7 @@ class LocationsController < ApplicationController
   end
 
   def update
-    puts params
+    puts "====================== #{params}"
 
     success = false
 
