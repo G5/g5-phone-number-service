@@ -23,6 +23,7 @@ class LocationsController < ApplicationController
 
     # build up nested locations hash
     params.each do |k, v|
+      puts "=========== k: #{k} and v: #{v}"
       location = {}
 
       if k =~ /location_/
@@ -38,8 +39,6 @@ class LocationsController < ApplicationController
     end
 
     locations.each do |k,v|
-      puts "&&&&&&&&&&&&&&&&&&&&&& V: #{v}"
-      puts "======================LOCATION: #{Location.where(urn: k).first}"
       Location.where(urn: k).first.update_attributes!(v)
     end
 
