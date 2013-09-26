@@ -16,7 +16,6 @@ class LocationsController < ApplicationController
   end
 
   def update
-    puts "====================== #{params}"
 
     success = false
 
@@ -39,6 +38,8 @@ class LocationsController < ApplicationController
     end
 
     locations.each do |k,v|
+      puts "&&&&&&&&&&&&&&&&&&&&&& V: #{v}"
+      puts "======================LOCATION: #{Location.where(urn: k).first}"
       Location.where(urn: k).first.update_attributes!(v)
     end
 
