@@ -26,13 +26,13 @@ class LocationsController < ApplicationController
       location = {}
 
       if k =~ /location_/
-        k.match(/location_(g5-c-\w+-\w+)--(\w+)/)
+        k.match(/location_(g5-cl-\w+-\w+(-\w+)*)--(\w+)/)
 
         if locations[$1].nil?
           locations[$1] = {}
         end
 
-        locations[$1][$2] = v
+        locations[$1][$3] = v
       end
 
     end
