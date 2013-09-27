@@ -23,11 +23,10 @@ class LocationsController < ApplicationController
 
     # build up nested locations hash
     params.each do |k, v|
-      puts "=========== k: #{k} and v: #{v}"
       location = {}
 
       if k =~ /location_/
-        k.match(/location_(\w+)--(\w+-*\w+)/)
+        k.match(/location_(g5-c-\w+-\w+)--(\w+)/)
 
         if locations[$1].nil?
           locations[$1] = {}
@@ -39,7 +38,7 @@ class LocationsController < ApplicationController
     end
 
     locations.each do |k,v|
-      Location.where(urn: k).first.update_attributes!(v)
+      Location.where(:urn => k).first.update_attributes!(v)
     end
 
     # naively assumes all locations saved
