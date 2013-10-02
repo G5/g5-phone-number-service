@@ -38,7 +38,7 @@ describe LocationsController do
         LocationsController.any_instance.stub(:location_params).and_return {}
         post :create
         expect(response).to redirect_to(root_path)
-        flash[:notice].should eq "Location was NOT successfully created."
+        flash[:alert].should eq "Location was NOT successfully created."
       end
     end
 
@@ -51,6 +51,26 @@ describe LocationsController do
     describe "when it's given valid params" do
       it "does not raise an error" do
         expect {post :create, :location => {urn: "g5-cl-whatever-3"}}.not_to raise_error()
+      end
+    end
+  end
+
+  describe "PUT #update" do
+    describe "when it saves" do
+      it "redirects to root path" do
+        LocationsController.any_instance.stub(:update_locations).and_return true
+        put :update
+        expect(response).to redirect_to(root_path)
+        flash[:notice].should eq "Locations were updated."
+      end
+    end
+
+    describe "when it does not save" do
+      it "redirects to root path" do
+        LocationsController.any_instance.stub(:update_locations).and_return false
+        put :update
+        expect(response).to redirect_to(root_path)
+        flash[:alert].should eq "Locations were NOT updated."
       end
     end
   end
