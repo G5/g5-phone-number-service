@@ -25,7 +25,6 @@
 dump.rdb
 
 # Ignore repo files
-.env
 .ruby-version
 
 # Ignore sassy stuff
@@ -37,3 +36,6 @@ coverage
 
 # Ignore railroady
 doc/*.svg
+
+# Ignore environment specific env
+ .env.*

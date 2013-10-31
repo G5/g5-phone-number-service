@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-G5PhoneNumberService::Application.config.secret_key_base = '4cbbf7e5b8134f2786207d3113ccde5e52577b8529502bc8efdf473dc8dbf451af124e9ebc975e0a4dbae0bd5b59b165da03d5e2552f0bf7174a518ee67d62c8'
+G5PhoneNumberService::Application.config.secret_key_base = ENV["SECRET_KEY_BASE"]
