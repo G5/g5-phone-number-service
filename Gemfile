@@ -14,6 +14,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem "dotenv-rails", "~> 0.9.0"
   gem 'sqlite3'
   gem "rspec-rails", "~> 2.14.0"
   gem "capybara", "~> 2.1.0"
