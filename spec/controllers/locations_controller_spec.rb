@@ -1,5 +1,4 @@
-require 'spec_helper'
-include AuthHelper
+require "spec_helper"
 
 describe LocationsController do
 

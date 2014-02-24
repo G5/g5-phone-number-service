@@ -13,6 +13,7 @@ describe "locations requests" do
   describe "index" do
     before do
       visit locations_path
+      http_login
     end
 
     it "has locations heading" do

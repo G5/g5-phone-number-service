@@ -1,6 +1,6 @@
 require "spec_helper"
 
-module AuthHelper
+module ControllerAuthHelper
   def http_login
     name = ENV["HTTP_BASIC_AUTH_NAME"]
     password = ENV["HTTP_BASIC_AUTH_PASSWORD"]
