@@ -1,4 +1,5 @@
 require 'spec_helper'
+include AuthHelper
 
 describe LocationsController do
 
@@ -22,6 +23,10 @@ describe LocationsController do
   end
 
   describe "POST #create" do
+    before :each do
+      http_login
+    end
+
     describe "when it saves" do
       it "redirects to root path" do
         Location.any_instance.stub(:save).and_return(true)
@@ -56,6 +61,10 @@ describe LocationsController do
   end
 
   describe "PUT #update" do
+    before :each do
+      http_login
+    end
+
     describe "when it saves" do
       it "redirects to root path" do
         LocationsController.any_instance.stub(:update_locations).and_return true
