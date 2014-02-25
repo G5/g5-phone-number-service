@@ -1,49 +1,55 @@
-<div class="page-header">
-  <div class="container">
-    <h1>Locations</h1>
+<header class="clearfix">
+  <h2 class="pull-left">Locations</h2>
+  <%= link_to 'New Location', new_location_path, class: "btn btn-success btn-lg pull-right" %>
+</header>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
   </div>
-</div>
+<% end %>
 
-<div class="container">
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 
-  <% if flash[:notice] %>
-    <div class="alert alert-success">
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
+<table class="table table-striped table-responsive">
+  <thead>
+    <tr>
+      <th>URN</th>
+      <th>Name</th>
+      <th>Default Number</th>
+      <th>Mobile Number</th>
+      <th>PPC Number</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
 
-  <% if flash[:alert] %>
-    <div class="alert alert-danger">
-      <%= flash[:alert] %>
-    </div>
-  <% end %>
+  <tbody>
+    <% @locations.each do |location| %>
 
+      <tr id="<%= location.urn %>" class="h-card">
+        <td class="p-uid" id="urn--<%= location.urn %>">
+          <%= location.urn %>
+        </td>
+        <td class="p-name" id="name--<%= location.name %>">
+          <%= location.name %>
+        </td>
+        <td class="p-tel p-tel-default" id="default_number--<%= location.default_number %>">
+          <%= location.default_number %>
+        </td>
+        <td class="p-tel p-tel-mobile" id="mobile_number--<%= location.mobile_number %>">
+          <%= location.mobile_number %>
+        </td>
+        <td class="p-tel p-tel-ppc" id="ppc_number--<%= location.ppc_number %>">
+          <%= location.ppc_number %>
+        </td>
+        <td><%= link_to 'Edit', edit_location_path(location), class: "btn btn-default" %></td>
+        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
+      </tr>
 
-  <%= render 'new_form' %>
-
-  <%= form_tag locations_update_path, id: "update_locations" do %>
-    <table class="table table-striped table-responsive">
-      <thead>
-        <tr>
-          <th>URN</th>
-          <th>Name</th>
-          <th>Default Number</th>
-          <th>Mobile Number</th>
-          <th>PPC Number</th>
-          <th colspan="2">Actions</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @locations.each do |location| %>
-          <%= render 'edit_form', location: location %>
-        <% end %>
-      </tbody>
-    </table>
-
-    <div class="actions">
-      <%= submit_tag "Save", class: "btn btn-default" %>
-    </div>
-  <% end %>
-
-</div>
+    <% end %>
+  </tbody>
+</table>

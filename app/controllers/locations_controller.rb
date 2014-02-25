@@ -1,9 +1,15 @@
 class LocationsController < ApplicationController
   http_basic_authenticate_with(name: ENV["HTTP_BASIC_AUTH_NAME"], password: ENV["HTTP_BASIC_AUTH_PASSWORD"], except: :index) if ENV["HTTP_BASIC_AUTH_NAME"] && ENV["HTTP_BASIC_AUTH_PASSWORD"]
-  before_action :set_location, only: [:destroy]
+  before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   def index
     @locations = Location.all
+  end
+
+  def edit
+  end
+
+  def new
     @location = Location.new
   end
 
@@ -17,47 +23,21 @@ class LocationsController < ApplicationController
   end
 
   def update
-    if update_locations(params)
-      redirect_to root_path, notice: 'Locations were updated.'
-    else
-      redirect_to root_path, alert: 'Locations were NOT updated.'
+    respond_to do |format|
+      if @location.update(location_params)
+        redirect_to root_path, notice: 'Floor plan was successfully updated.'
+      else
+        render action: 'edit', alert: 'Location was NOT successfully updated.'
+      end
     end
   end
 
   def destroy
     @location.destroy
-    redirect_to locations_url
+    redirect_to locations_url, notice: 'Floor plan was successfully deleted.'
   end
 
   private
-    def update_locations(params)
-      success = false
-
-      locations = {}
-
-      # build up nested locations hash
-      params.each do |k, v|
-        location = {}
-
-        if k =~ /location_/
-          k.match(/location_(g5-cl-\w+-\w+(-\w+)*)--(\w+)/)
-
-          if locations[$1].nil?
-            locations[$1] = {}
-          end
-
-          locations[$1][$3] = v
-        end
-
-      end
-
-      locations.each do |k,v|
-        Location.where(:urn => k).first.update_attributes!(v)
-      end
-
-      # naively assumes all locations saved
-      success = true
-    end
     def set_location
       @location = Location.find(params[:id])
     end
