@@ -26,7 +26,7 @@ class LocationsController < ApplicationController
     if @location.update(location_params)
       redirect_to root_path, notice: 'Location was successfully updated.'
     else
-      render action: 'edit', alert: 'Location was NOT successfully updated.'
+      redirect_to root_path, alert: 'Location was NOT successfully updated.'
     end
   end
 
