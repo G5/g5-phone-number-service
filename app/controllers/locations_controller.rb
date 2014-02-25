@@ -18,7 +18,7 @@ class LocationsController < ApplicationController
     if @location.save
       redirect_to root_path, notice: 'Location was successfully created.'
     else
-      render action: 'new'
+      render action: 'new', alert: 'Location was NOT created'
     end
   end
 
@@ -26,7 +26,7 @@ class LocationsController < ApplicationController
     if @location.update(location_params)
       redirect_to root_path, notice: 'Location was successfully updated.'
     else
-      render action: 'edit'
+      render action: 'edit', alert: 'Location was NOT updated'
     end
   end
 
