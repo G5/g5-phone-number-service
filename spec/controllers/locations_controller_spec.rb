@@ -5,7 +5,7 @@ describe LocationsController do
   # This should return the minimal set of attributes required to create a valid
   # Location. As you add validations to Location, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "urn" => "g5-cl-6cx7rin-hollywood", "name" => "Hollywood" } }
+  let(:valid_attributes) { { "urn" => "g5-cl-6cx7rin-hollywood", "name" => "Hollywood", "default_number" => "1234567890" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -25,7 +25,8 @@ describe LocationsController do
     end
 
     it "loads all locations into @locations" do
-      location1, location2 = Location.create!, Location.create!
+      location1 = Location.create! valid_attributes
+      location2 = Location.create! "urn" => "g5-cl-6cx7rin-farmhouse", "name" => "Farmhouse", "default_number" => "1234567890"
       get :index
       expect(assigns(:locations)).to match_array([location1, location2])
     end
@@ -48,12 +49,11 @@ describe LocationsController do
       end
 
       describe "when it does not save" do
-        it "redirects to root path" do
+        it "renders new location path" do
           Location.any_instance.stub(:save).and_return(false)
           LocationsController.any_instance.stub(:location_params).and_return {}
           post :create
-          expect(response).to redirect_to(root_path)
-          flash[:alert].should eq "Location was NOT successfully created."
+          expect(response).to render_template("new")
         end
       end
 

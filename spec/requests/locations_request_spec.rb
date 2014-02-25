@@ -53,7 +53,7 @@ describe "locations requests" do
 
     describe "without http basic auth" do
       before do
-        @location = Location.create! "urn" => "g5-cl-6cx7rin-hollywood", "name" => "hollywood"
+        @location = Location.create! "urn" => "g5-cl-6cx7rin-hollywood", "name" => "hollywood", "default_number" => "1234567890"
         visit locations_path
       end
 
