@@ -1,9 +1,40 @@
-.new_location .btn {
-  margin-top: 25px;
+body {
+  margin-bottom: 2em;
+}
+
+header {
+  margin-bottom: 1em;
+}
+
+label,
+.btn {
+  text-transform: capitalize;
+}
+
+ul, li {
+  list-style-type: none;
+}
+
+ul {
+  padding-left: 0;
 }
 
 textarea {
   overflow: hidden;
   resize: none;
   white-space: nowrap;
+}
+
+header .btn {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+[role=banner] h1 a {
+  color: #333;
+}
+
+[role=banner] h1 a:hover,
+[role=banner] h1 a:focus {
+  text-decoration: none;
 }

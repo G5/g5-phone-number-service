@@ -2,6 +2,16 @@ require "spec_helper"
 
 describe LocationsController do
 
+  # This should return the minimal set of attributes required to create a valid
+  # Location. As you add validations to Location, be sure to
+  # adjust the attributes here as well.
+  let(:valid_attributes) { { "urn" => "g5-cl-6cx7rin-hollywood", "name" => "Hollywood", "default_number" => "1234567890" } }
+
+  # This should return the minimal set of values that should be in the session
+  # in order to pass any filters (e.g. authentication) defined in
+  # LocationsController. Be sure to keep this updated too.
+  let(:valid_session) { {} }
+
   describe "GET #index" do
     it "responds successfully with an HTTP 200 status code" do
       get :index
@@ -15,7 +25,8 @@ describe LocationsController do
     end
 
     it "loads all locations into @locations" do
-      location1, location2 = Location.create!, Location.create!
+      location1 = Location.create! valid_attributes
+      location2 = Location.create! "urn" => "g5-cl-6cx7rin-farmhouse", "name" => "Farmhouse", "default_number" => "1234567890"
       get :index
       expect(assigns(:locations)).to match_array([location1, location2])
     end
@@ -38,12 +49,11 @@ describe LocationsController do
       end
 
       describe "when it does not save" do
-        it "redirects to root path" do
+        it "renders new location path" do
           Location.any_instance.stub(:save).and_return(false)
           LocationsController.any_instance.stub(:location_params).and_return {}
           post :create
-          expect(response).to redirect_to(root_path)
-          flash[:alert].should eq "Location was NOT successfully created."
+          expect(response).to render_template("new")
         end
       end
 
@@ -78,27 +88,28 @@ describe LocationsController do
 
       describe "when it saves" do
         it "redirects to root path" do
-          LocationsController.any_instance.stub(:update_locations).and_return true
-          put :update
+          location = Location.create! valid_attributes
+          put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
           expect(response).to redirect_to(root_path)
-          flash[:notice].should eq "Locations were updated."
+          flash[:notice].should eq "Location was successfully updated."
         end
       end
 
       describe "when it does not save" do
-        it "redirects to root path" do
-          LocationsController.any_instance.stub(:update_locations).and_return false
-          put :update
-          expect(response).to redirect_to(root_path)
-          flash[:alert].should eq "Locations were NOT updated."
+        it "renders the edit template" do
+          location = Location.create! valid_attributes
+          Location.any_instance.stub(:save).and_return(false)
+          put :update, {:id => location.to_param, :location => { "urn" => "invalid value" }}, valid_session
+          expect(response).to render_template("edit")
         end
       end
     end
     describe "without http basic auth" do
       describe "when it saves" do
         it "receives a 401 response code" do
-          put :update
-          response.response_code.should == 401
+          location = Location.create! valid_attributes
+          put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
+          expect(response.status).to eq(401)
         end
       end
     end
