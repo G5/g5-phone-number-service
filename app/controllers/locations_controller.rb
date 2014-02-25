@@ -24,7 +24,7 @@ class LocationsController < ApplicationController
 
   def update
     if @location.update(location_params)
-      redirect_to root_path, notice: 'Floor plan was successfully updated.'
+      redirect_to root_path, notice: 'Location was successfully updated.'
     else
       render action: 'edit', alert: 'Location was NOT successfully updated.'
     end
@@ -32,7 +32,7 @@ class LocationsController < ApplicationController
 
   def destroy
     @location.destroy
-    redirect_to locations_url, notice: 'Floor plan was successfully deleted.'
+    redirect_to locations_url, notice: 'Location was successfully deleted.'
   end
 
   private
