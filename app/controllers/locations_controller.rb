@@ -23,12 +23,10 @@ class LocationsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @location.update(location_params)
-        redirect_to root_path, notice: 'Floor plan was successfully updated.'
-      else
-        render action: 'edit', alert: 'Location was NOT successfully updated.'
-      end
+    if @location.update(location_params)
+      redirect_to root_path, notice: 'Floor plan was successfully updated.'
+    else
+      render action: 'edit', alert: 'Location was NOT successfully updated.'
     end
   end
 
