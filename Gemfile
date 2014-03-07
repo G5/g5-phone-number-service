@@ -31,4 +31,5 @@ group :production do
   gem "pg"
   gem "newrelic_rpm"
   gem "honeybadger"
+  gem "lograge"
 end
