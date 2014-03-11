@@ -32,4 +32,5 @@ group :production do
   gem "newrelic_rpm"
   gem "honeybadger"
   gem "lograge"
+  gem "unicorn"
 end
