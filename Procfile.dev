@@ -1,0 +1,1 @@
+web: bundle exec rails s -p $G5_PHONE_NUMBER_SERVICE_PORT
