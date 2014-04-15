@@ -24,9 +24,6 @@
 .DS_Store
 dump.rdb
 
-# Ignore repo files
-.ruby-version
-
 # Ignore sassy stuff
 .sass-cache
 public/stylesheets
