@@ -3,7 +3,7 @@ module ApplicationHelper
   SERVICES = %w(cms cpns cpas cls cxm)
 
   def current_urn
-    request.host.match(/(\A\w+-\w+-\w+)\./)[1]
+    request.host.split(".").first
   end
 
   def client_app_name
