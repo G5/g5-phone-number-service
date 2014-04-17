@@ -61,6 +61,12 @@ describe "locations requests" do
         expect(page).to have_content "Locations"
       end
 
+      it "has client apps navigation" do
+        expect(page).to have_link("CMS", "http://g5-cms-6cx7rin-hollywood.herokuapp.com")
+        expect(page).to have_link("Pricing and Availability", "http://g5-cpas-6cx7rin-hollywood.herokuapp.com")
+        expect(page).to have_link("Leads", "http://g5-cls-6cx7rin-hollywood.herokuapp.com")
+      end
+
       it "doesnt let me create a new location" do
         visit new_location_path
         expect(page).to have_text "HTTP Basic: Access denied."
