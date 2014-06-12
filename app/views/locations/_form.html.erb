@@ -14,7 +14,7 @@
 
   <div class="form-group">
     <%= f.label :urn %><br>
-    <%= f.text_field :urn, class: "form-control" %>
+    <%= f.text_field :urn, class: "form-control", placeholder: "g5-cl-xxxxxxx-name", pattern: "g5-cl-[A-Za-z0-9]{7,8}-[A-Za-z\-]+", title: "Format should be g5-cl-xxxxxxx(x)-name" %>
   </div>
   <div class="form-group">
     <%= f.label :name %><br>
