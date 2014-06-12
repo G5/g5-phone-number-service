@@ -3,7 +3,7 @@ require "spec_helper"
 def create_location
   visit new_location_path
   within("#new_location") do
-    fill_in "location_urn", with: "g5-cl-whatever3-name"
+    fill_in "location_urn", with: "g5-cl-whatever-name"
     fill_in "location_name", with: "farmhouse"
     fill_in "location_default_number", with: "1234567890"
   end
@@ -24,15 +24,24 @@ describe "locations requests" do
 
       it "lets me create a new location" do
         create_location
-        expect(page).to have_selector "#urn--g5-cl-whatever3-name"
+        expect(page).to have_selector "#urn--g5-cl-whatever-name"
         expect(page).to have_selector "#name--farmhouse"
         expect(page).to have_selector "#default_number--1234567890"
+      end
+
+      it "should not accept invalid URNs" do
+        visit new_location_path
+        within("#new_location") do
+          fill_in "location_urn", with: "whatever-name"
+        end
+        click_button "Create Location"
+        expect(page).to have_content "Urn is invalid"
       end
 
       it "lets me update a location" do
         create_location
 
-        within("#g5-cl-whatever3-name") do
+        within("#g5-cl-whatever-name") do
           click_link "Edit"
         end
 
@@ -44,10 +53,10 @@ describe "locations requests" do
 
       it "lets me delete a location" do
         create_location
-        within("#g5-cl-whatever3-name") do
+        within("#g5-cl-whatever-name") do
           click_link "Destroy"
         end
-        expect(page).not_to have_selector "#g5-cl-whatever3-name"
+        expect(page).not_to have_selector "#g5-cl-whatever-name"
       end
     end
 
