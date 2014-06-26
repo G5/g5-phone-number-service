@@ -77,6 +77,10 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    microformats2 (2.0.1)
+      activesupport
+      json
+      nokogiri
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (5.3.3)
@@ -185,6 +189,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   lograge
+  microformats2
   newrelic_rpm
   pg
   rails (~> 4.1.0)
