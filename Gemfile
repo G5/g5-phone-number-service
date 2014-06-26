@@ -22,6 +22,8 @@ group :development, :test do
   gem "selenium-webdriver", "~> 2.35.1"
   gem "database_cleaner", "< 1.1.0"
   gem "foreman"
+  gem "fabrication"
+  gem "faker"
 end
 
 group :doc do
