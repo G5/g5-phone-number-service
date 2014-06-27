@@ -95,7 +95,7 @@ describe "locations requests" do
       visit locations_path
       expect(find_link('CMS')[:href]).to eq("http://g5-cms-6cx7rin-hollywood.herokuapp.com/")
       expect(find_link('Pricing and Availability')[:href]).to eq("http://g5-cpas-6cx7rin-hollywood.herokuapp.com/")
-      expect(find_link('Leads')[:href]).to eq("http://g5-cls-6cx7rin-hollywood.herokuapp.com/")
+      expect(find_link('Customer Experience Management')[:href]).to eq("http://g5-cxm-6cx7rin-hollywood.herokuapp.com/")
     end
   end
 end
