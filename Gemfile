@@ -6,6 +6,7 @@ gem "jquery-rails"
 gem "turbolinks"
 gem "jbuilder", "~> 1.2"
 gem "microformats2"
+gem "g5_updatable", path: "~/g5/g5_updatable"
 
 group :assets do
   gem "sass-rails", "~> 4.0.0"
