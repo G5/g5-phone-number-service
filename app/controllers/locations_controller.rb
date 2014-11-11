@@ -1,12 +1,18 @@
 class LocationsController < ApplicationController
   http_basic_authenticate_with(name: ENV["HTTP_BASIC_AUTH_NAME"], password: ENV["HTTP_BASIC_AUTH_PASSWORD"], except: [:index, :show]) if ENV["HTTP_BASIC_AUTH_NAME"] && ENV["HTTP_BASIC_AUTH_PASSWORD"]
-  before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :set_location, only: [:edit, :update, :destroy]
 
   def index
     @locations = Location.all
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @locations }
+    end
   end
 
   def show
+    @location = Location.find_by_urn(params[:id]) || Location.find(params[:id])
     render json: @location
   end
 
