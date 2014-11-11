@@ -1,9 +1,13 @@
 class LocationsController < ApplicationController
-  http_basic_authenticate_with(name: ENV["HTTP_BASIC_AUTH_NAME"], password: ENV["HTTP_BASIC_AUTH_PASSWORD"], except: :index) if ENV["HTTP_BASIC_AUTH_NAME"] && ENV["HTTP_BASIC_AUTH_PASSWORD"]
+  http_basic_authenticate_with(name: ENV["HTTP_BASIC_AUTH_NAME"], password: ENV["HTTP_BASIC_AUTH_PASSWORD"], except: [:index, :show]) if ENV["HTTP_BASIC_AUTH_NAME"] && ENV["HTTP_BASIC_AUTH_PASSWORD"]
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   def index
     @locations = Location.all
+  end
+
+  def show
+    render json: @location
   end
 
   def edit
