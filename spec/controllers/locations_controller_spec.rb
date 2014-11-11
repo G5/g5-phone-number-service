@@ -24,6 +24,11 @@ describe LocationsController do
       expect(response).to render_template(:index)
     end
 
+    it "speaks json too" do
+      get :index, format: :json
+      expect(response.status).to eq(200)
+    end
+
     it "loads all locations into @locations" do
       location1 = Location.create! valid_attributes
       location2 = Location.create! "urn" => "g5-cl-6cx7rin-farmhouse", "name" => "Farmhouse", "default_number" => "1234567890"
@@ -36,6 +41,10 @@ describe LocationsController do
     let!(:location) { Fabricate(:location) }
     it "renders a location as json" do
       get :show, id: location.id
+      expect(response.body).to eq(location.to_json)
+    end
+    it "supports lookup by urn" do
+      get :show, id: location.urn
       expect(response.body).to eq(location.to_json)
     end
   end
