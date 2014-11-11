@@ -32,6 +32,14 @@ describe LocationsController do
     end
   end
 
+  describe "GET #show" do
+    let!(:location) { Fabricate(:location) }
+    it "renders a location as json" do
+      get :show, id: location.id
+      expect(response.body).to eq(location.to_json)
+    end
+  end
+
   describe "POST #create" do
     describe "with http basic auth" do
       before :each do
