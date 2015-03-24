@@ -5,8 +5,15 @@ ENV["HTTP_BASIC_AUTH_PASSWORD"] ||= "password"
 
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+
 require "capybara/rails"
 require "capybara/rspec"
+require 'capybara/poltergeist'
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, timeout: 180)
+end
+Capybara.javascript_driver = :poltergeist
+
 require "database_cleaner"
 
 # Requires supporting ruby files with custom matchers and macros, etc,
