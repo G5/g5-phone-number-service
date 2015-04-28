@@ -1,12 +1,12 @@
 source "https://rubygems.org"
-ruby "2.1.5"
+ruby "2.2.2"
 
 gem "rails", "4.1.7"
 gem "jquery-rails"
 gem "turbolinks"
 gem "jbuilder", "~> 1.2"
 gem "microformats2"
-gem "g5_updatable"
+gem 'g5_updatable', '~> 0.5.1'
 
 group :assets do
   gem "sass-rails", "~> 4.0.0"
