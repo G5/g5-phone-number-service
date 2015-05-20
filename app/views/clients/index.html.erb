@@ -34,6 +34,7 @@
         <td class="p-name" id="name--<%= client.name %>">
           <%= client.name %>
         </td>
+        <td><%= link_to 'Locations', client_path(client), class: "btn btn-default" %></td>
         <td><%= link_to 'Edit', edit_client_path(client), class: "btn btn-default" %></td>
         <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
       </tr>
