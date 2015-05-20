@@ -25,6 +25,7 @@ group :development, :test do
   gem "foreman"
   gem "fabrication"
   gem "faker"
+  gem "pry"
 end
 
 group :doc do
