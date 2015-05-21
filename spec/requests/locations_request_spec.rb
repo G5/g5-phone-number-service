@@ -16,7 +16,6 @@ describe "locations requests" do
       before do
         @test_client = Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity"
         visit client_locations_path(@test_client)
-        http_login
       end
 
       it "has locations heading" do
@@ -70,12 +69,6 @@ describe "locations requests" do
       it "has locations heading" do
         expect(page).to have_content "Locations"
       end
-
-      it "doesnt let me create a new location" do
-        visit new_location_path
-        expect(page).to have_text "HTTP Basic: Access denied."
-      end
-
     end
 
     it "has client apps navigation" do

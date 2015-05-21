@@ -52,7 +52,6 @@ describe LocationsController do
   describe "POST #create" do
     describe "with http basic auth" do
       before :each do
-        http_login
         @test_client = Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity"
       end
 
@@ -87,22 +86,10 @@ describe LocationsController do
         end
       end
     end
-
-    describe "without http basic auth" do
-      describe "when it saves" do
-        it "receives a 401 response code" do
-          post :create
-          response.response_code.should == 401
-        end
-      end
-    end
   end
 
   describe "PUT #update" do
     describe "with http basic auth" do
-      before :each do
-        http_login
-      end
 
       describe "when it saves" do
         it "redirects to root path" do
@@ -119,15 +106,6 @@ describe LocationsController do
           Location.any_instance.stub(:save).and_return(false)
           put :update, {:id => location.to_param, :location => { "urn" => "invalid value" }}, valid_session
           expect(response).to render_template("edit")
-        end
-      end
-    end
-    describe "without http basic auth" do
-      describe "when it saves" do
-        it "receives a 401 response code" do
-          location = Location.create! valid_attributes
-          put :update, {:id => location.to_param, :location => valid_attributes}, valid_session
-          expect(response.status).to eq(401)
         end
       end
     end
