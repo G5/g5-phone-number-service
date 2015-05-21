@@ -1,5 +1,6 @@
 G5PhoneNumberService::Application.routes.draw do
 
+  mount G5Authenticatable::Engine => '/g5_auth'
   mount G5Updatable::Engine => '/g5_updatable'
 
   resources :clients do

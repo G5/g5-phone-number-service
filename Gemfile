@@ -7,6 +7,7 @@ gem "turbolinks"
 gem "jbuilder", "~> 1.2"
 gem "microformats2"
 gem 'g5_updatable', '~> 0.5.1'
+gem 'g5_authenticatable'
 
 group :assets do
   gem "sass-rails", "~> 4.0.0"
