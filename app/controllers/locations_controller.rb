@@ -3,7 +3,14 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:edit, :update, :destroy]
 
   def index
-    @locations = Location.all
+    # Still need to deal with the clientless index view for a while
+    # This can be removed once we've fixed all the consumer URLs
+    if params[:client_id] && Client.find(params[:client_id])
+      @client = Client.find(params[:client_id])
+      @locations = @client.locations
+    else
+      @locations = Location.all
+    end
 
     respond_to do |format|
       format.html
@@ -20,13 +27,15 @@ class LocationsController < ApplicationController
   end
 
   def new
+    @client = Client.find(params[:client_id])
     @location = Location.new
   end
 
   def create
-    @location = Location.new(location_params)
+    @client = Client.find(params[:client_id])
+    @location = @client.locations.new(location_params)
     if @location.save
-      redirect_to root_path, notice: 'Location was successfully created.'
+      redirect_to client_locations_path(@client), notice: 'Location was successfully created.'
     else
       render action: 'new', alert: 'Location was NOT created'
     end

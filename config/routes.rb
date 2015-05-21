@@ -2,9 +2,14 @@ G5PhoneNumberService::Application.routes.draw do
 
   mount G5Updatable::Engine => '/g5_updatable'
 
-  resources :clients
+  resources :clients do
+    resources :locations
+  end
+
   resources :locations
 
+  # Root will eventually point to 'clients#index' once we 
+  # are sure we've correctly updated all the CPNS consumers
   root 'locations#index'
 
   get '/:id', to: 'clients#show'
