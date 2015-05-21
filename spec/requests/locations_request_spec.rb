@@ -76,19 +76,6 @@ describe "locations requests" do
         expect(page).to have_text "HTTP Basic: Access denied."
       end
 
-      it "doesnt let me update a location" do
-        within("#g5-cl-6cx7rin-hollywood") do
-          click_link "Edit"
-        end
-        expect(page).to have_text "HTTP Basic: Access denied."
-      end
-
-      it "doesnt let me delete a location" do
-        within("#g5-cl-6cx7rin-hollywood") do
-          click_link "Destroy"
-        end
-        expect(page).to have_text "HTTP Basic: Access denied."
-      end
     end
 
     it "has client apps navigation" do

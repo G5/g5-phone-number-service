@@ -23,7 +23,9 @@
       <th>Default Number</th>
       <th>Mobile Number</th>
       <th>PPC Number</th>
-      <th colspan="2">Actions</th>
+      <% if @client %>
+        <th colspan="2">Actions</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -46,8 +48,11 @@
         <td class="p-tel p-tel-ppc" id="ppc_number--<%= location.ppc_number %>">
           <%= location.ppc_number %>
         </td>
-        <td><%= link_to 'Edit', edit_location_path(location), class: "btn btn-default" %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
+
+        <% if @client %>
+          <td><%= link_to 'Edit', edit_location_path(location), class: "btn btn-default" %></td>
+          <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
+        <% end %>
       </tr>
 
     <% end %>
