@@ -35,4 +35,4 @@ coverage
 doc/*.svg
 
 # Ignore environment specific env
- .env.*
+.env.*
