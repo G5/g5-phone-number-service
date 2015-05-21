@@ -1,7 +1,7 @@
 require "spec_helper"
 
 def create_location
-  visit new_location_path
+  visit new_client_location_path(@test_client)
   within("#new_location") do
     fill_in "location_urn", with: "g5-cl-whatever-name"
     fill_in "location_name", with: "farmhouse"
@@ -14,7 +14,8 @@ describe "locations requests" do
   describe "index" do
     describe "with http basic auth" do
       before do
-        visit locations_path
+        @test_client = Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity"
+        visit client_locations_path(@test_client)
         http_login
       end
 
@@ -30,7 +31,7 @@ describe "locations requests" do
       end
 
       it "should not accept invalid URNs" do
-        visit new_location_path
+        visit new_client_location_path(@test_client)
         within("#new_location") do
           fill_in "location_urn", with: "whatever-name"
         end

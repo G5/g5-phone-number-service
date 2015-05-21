@@ -53,14 +53,15 @@ describe LocationsController do
     describe "with http basic auth" do
       before :each do
         http_login
+        @test_client = Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity"
       end
 
       describe "when it saves" do
         it "redirects to root path" do
           Location.any_instance.stub(:save).and_return(true)
           LocationsController.any_instance.stub(:location_params).and_return {}
-          post :create
-          expect(response).to redirect_to(root_path)
+          post :create, client_id: @test_client.id
+          expect(response).to redirect_to(client_locations_path(@test_client))
           flash[:notice].should eq "Location was successfully created."
         end
       end
@@ -69,20 +70,20 @@ describe LocationsController do
         it "renders new location path" do
           Location.any_instance.stub(:save).and_return(false)
           LocationsController.any_instance.stub(:location_params).and_return {}
-          post :create
+          post :create, client_id: @test_client.id
           expect(response).to render_template("new")
         end
       end
 
       describe "when it's given invalid params" do
         it "raises an error" do
-          expect {post :create}.to raise_error(ActionController::ParameterMissing)
+          expect {post :create, client_id: @test_client.id}.to raise_error(ActionController::ParameterMissing)
         end
       end
 
       describe "when it's given valid params" do
         it "does not raise an error" do
-          expect {post :create, :location => {urn: "g5-cl-whatever-3"}}.not_to raise_error()
+          expect {post :create, client_id: @test_client.id, :location => {urn: "g5-cl-whatever-3"}}.not_to raise_error()
         end
       end
     end
