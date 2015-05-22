@@ -1,4 +1,7 @@
 class LocationsController < ApplicationController
+
+  before_filter :authenticate_user!, except: [:index, :show]
+
   before_action :set_location, only: [:edit, :update, :destroy]
 
   def index

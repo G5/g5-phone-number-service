@@ -50,7 +50,7 @@ describe LocationsController do
   end
 
   describe "POST #create" do
-    describe "with http basic auth" do
+    describe "with authenticated user", auth_controller: true do
       before :each do
         @test_client = Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity"
       end
@@ -89,8 +89,7 @@ describe LocationsController do
   end
 
   describe "PUT #update" do
-    describe "with http basic auth" do
-
+    describe "authenticated user", auth_controller: true do
       describe "when it saves" do
         it "redirects to root path" do
           location = Location.create! valid_attributes
