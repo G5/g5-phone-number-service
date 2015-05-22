@@ -109,4 +109,50 @@ describe LocationsController do
       end
     end
   end
+
+  describe "non-authorized users" do
+    before do
+      @test_client = Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity"
+      @test_location = Location.create! valid_attributes
+      @new_attrs = { urn: "g5-cl-xxxxxxx-hell", name: "hell", default_number: "666-666-6666" }
+    end
+
+    it "can see index" do
+      get :index
+      expect(response).to be_success
+    end
+
+    it "can see show" do
+      get :show, id: @test_location.id
+      expect(response).to be_success
+    end
+
+    it "can't new" do
+      get :new, client_id: @test_client.id
+      expect(response).not_to be_success
+    end
+
+    it "can't edit" do
+      get :edit, id: @test_location.id
+      expect(response).not_to be_success
+    end
+
+    it "can't update" do
+      post :update, id: @test_location.id, location: @new_attrs
+      @test_location.reload
+      expect(@test_location.name).to eq(valid_attributes["name"])
+    end
+
+    it "can't create" do
+      expect{
+        post :create, client_id: @test_client.id, location: @new_attrs
+      }.to change{Location.all.count}.by(0)
+    end
+
+    it "can't destroy" do
+      expect{
+        delete :destroy, id: @test_location.id
+      }.to change{Location.all.count}.by(0)
+    end
+  end
 end
