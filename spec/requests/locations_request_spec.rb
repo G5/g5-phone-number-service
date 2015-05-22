@@ -12,7 +12,7 @@ end
 
 describe "locations requests" do
   describe "index" do
-    describe "with http basic auth" do
+    describe "authenticated user", auth_request: true do
       before do
         @test_client = Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity"
         visit client_locations_path(@test_client)
