@@ -2,13 +2,30 @@ require 'spec_helper'
 
 describe ClientsController do
 
-  describe "GET 'index'" do
-    it "returns http success" do
-      get 'index'
-      response.should be_success
+  context "with an autenticated user", auth_controller: true do
+    describe "GET index" do
+      it "returns http success" do
+        get 'index'
+        response.should be_success
+      end
+
+      it "assigns all clients as @clients" do
+        client = Client.create!("urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity")
+        get :index
+        expect(assigns(:clients)).to eq([client])
+      end
     end
   end
 
+  context "without an autenticated user"  do
+    describe "GET index" do
+      it "returns unauthorized" do
+        get 'index'
+        response.should_not be_success
+      end
+    end
+  end
+  
   describe "GET 'show'" do
     render_views
     before do

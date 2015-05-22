@@ -20,13 +20,18 @@ group :development, :test do
   gem "dotenv-rails", "~> 0.9.0"
   gem "sqlite3"
   gem "rspec-rails", "~> 2.14.0"
-  gem "capybara"
-  gem "poltergeist"
-  gem "database_cleaner", "< 1.1.0"
   gem "foreman"
   gem "fabrication"
   gem "faker"
   gem "pry"
+end
+
+group :test do
+  gem "capybara"
+  gem "poltergeist"
+  gem "database_cleaner"
+  gem 'factory_girl_rails'
+  gem 'webmock', require: 'webmock/rspec'
 end
 
 group :doc do
