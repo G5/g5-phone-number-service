@@ -1,4 +1,4 @@
-class Client < ActiveRecord::Base
+class Client < G5Updatable::Client
   validates :urn, :name, presence: true
   validates :urn, uniqueness: true
 

@@ -2,12 +2,14 @@ class ClientsController < ApplicationController
   before_filter :authenticate_user!, except: :show
 
   def index
-    @clients = Client.all
+    @clients = Client.all.order(:name)
   end
 
   def show
     @client = Client.find_by_id(params[:id]) || Client.find_by_urn(params[:id])
-    @locations = Location.where(client_id: @client.id)
+
+    # @locations = Location.where(client_id: @client.id)
+    @locations = Location.where(client_uid: @client.uid)
 
     respond_to do |format|
       format.html 

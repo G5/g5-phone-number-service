@@ -8,6 +8,7 @@ gem "jbuilder", "~> 1.2"
 gem "microformats2"
 gem 'g5_updatable', '~> 0.5.1'
 gem 'g5_authenticatable'
+gem "pg"
 
 group :assets do
   gem "sass-rails", "~> 4.0.0"
@@ -40,7 +41,6 @@ end
 
 group :production do
   gem "rails_12factor"
-  gem "pg"
   gem "newrelic_rpm"
   gem "honeybadger"
   gem "lograge"
