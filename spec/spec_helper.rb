@@ -6,6 +6,8 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'g5_authenticatable/rspec'
 
+require 'g5_updatable/rspec'
+
 require "capybara/rails"
 require "capybara/rspec"
 require 'capybara/poltergeist'

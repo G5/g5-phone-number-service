@@ -10,7 +10,7 @@ describe ClientsController do
       end
 
       it "assigns all clients as @clients" do
-        client = Client.create!("urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity")
+        client = G5Updatable::Client.create!("urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity", uid: "blah-blah-blah")
         get :index
         expect(assigns(:clients)).to eq([client])
       end
@@ -29,18 +29,18 @@ describe ClientsController do
   describe "GET 'show'" do
     render_views
     before do
-      @test_client = Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity"
-      @loc1 = Location.create! urn: "g5-cl-6cx7aaa-gigity-1", name: "Gigity 1", client_id: @test_client.id, default_number: "1234567890"
-      @loc2 = Location.create! urn: "g5-cl-6cx7bbb-gigity-2", name: "Gigity 2", client_id: @test_client.id, default_number: "1234567890"
+      @test_client = G5Updatable::Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity", uid: "blah-blah-blah"
+      @loc1 = Location.create! urn: "g5-cl-6cx7aaa-gigity-1", uid: "uid-1", name: "Gigity 1", client_uid: @test_client.uid
+      @loc2 = Location.create! urn: "g5-cl-6cx7bbb-gigity-2", uid: "uid-2", name: "Gigity 2", client_uid: @test_client.uid
     end
     
     it "sets the client" do
-      get :show, id: @test_client.id
+      get :show, id: @test_client.urn
       expect(assigns(:client)).to eq(@test_client)
     end
 
     it "sets locations" do
-      get :show, id: @test_client.id
+      get :show, id: @test_client.urn
       expect(assigns(:locations)).to eq([@loc1, @loc2])
     end
 

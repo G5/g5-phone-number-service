@@ -2,11 +2,11 @@ class ClientsController < ApplicationController
   before_filter :authenticate_user!, except: :show
 
   def index
-    @clients = Client.all.order(:name)
+    @clients = G5Updatable::Client.all.order(:name)
   end
 
   def show
-    @client = Client.find_by_urn(params[:id])
+    @client = G5Updatable::Client.find_by_urn(params[:id])
 
     # @locations = Location.where(client_uid: @client.uid)
 
