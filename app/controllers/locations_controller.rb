@@ -23,4 +23,10 @@ class LocationsController < ApplicationController
     render json: @location
   end
 
+  def edit
+    @location = Location.find_by_urn(params[:id]) || Location.find(params[:id])
+
+    @numbers = @location.phone_numbers
+  end
+
 end

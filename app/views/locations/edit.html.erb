@@ -1,3 +1,14 @@
 <h2>Edit Location</h2>
 
-<%= render 'form' %>
+<% PhoneNumber::NUMBER_KINDS.each_with_index do |number_kind, index| %>
+
+  <% numbers = [] %>
+  <% numbers[index] = @location.phone_numbers.find_or_create_by(number_kind: number_kind) %>
+
+  <%= form_for numbers[index], url: {action: "update", controller: :phone_numbers, id: numbers[index].id }, html: {class: "nifty_form"} do |f| %>
+    <%= f.label number_kind %><br>
+    <%= f.text_field :number %>
+    <%= f.submit "Update #{number_kind} number" %>
+  <% end %>
+
+<% end %>

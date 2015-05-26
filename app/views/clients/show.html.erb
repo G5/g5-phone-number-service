@@ -37,14 +37,14 @@
         <td class="p-name" id="name--<%= location.name %>">
           <%= location.name %>
         </td>
-        <td class="p-tel p-tel-default" id="default_number--<%#= location.default_number %>">
-          <%#= location.default_number %>
+        <td class="p-tel p-tel-default" id="default_number--<%= fetch_phone_number("Default", location.phone_numbers) %>">
+          <%= fetch_phone_number("Default", location.phone_numbers) %>
         </td>
-        <td class="p-tel p-tel-mobile" id="mobile_number--<%#= location.mobile_number %>">
-          <%#= location.mobile_number %>
+        <td class="p-tel p-tel-mobile" id="mobile_number--<%= fetch_phone_number("Mobile", location.phone_numbers) %>">
+          <%= fetch_phone_number("Mobile", location.phone_numbers) %>
         </td>
-        <td class="p-tel p-tel-ppc" id="ppc_number--<%#= location.ppc_number %>">
-          <%#= location.ppc_number %>
+        <td class="p-tel p-tel-ppc" id="ppc_number--<%= fetch_phone_number("PPC", location.phone_numbers) %>">
+          <%= fetch_phone_number("PPC", location.phone_numbers) %>
         </td>
         <td><%= link_to 'Edit', edit_location_path(location), class: "btn btn-default" %></td>
         <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>

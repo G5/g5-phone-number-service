@@ -30,4 +30,9 @@ module ApplicationHelper
       ENV["#{service.upcase}_URL"] || ("http://" + send(:"#{service}_app_name") + ".herokuapp.com/")
     end
   end
+
+  def fetch_phone_number(number_kind, numbers)
+    selected_number = numbers.select { |number| number.number_kind == number_kind }
+    selected_number.first.try(:number)
+  end
 end

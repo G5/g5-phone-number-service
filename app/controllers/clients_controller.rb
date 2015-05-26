@@ -8,7 +8,9 @@ class ClientsController < ApplicationController
   def show
     @client = Client.find_by_urn(params[:id])
 
-    @locations = Location.where(client_uid: @client.uid)
+    # @locations = Location.where(client_uid: @client.uid)
+
+    @locations = Location.includes(:phone_numbers).where(client_uid: @client.uid)
 
     respond_to do |format|
       format.html 
