@@ -1,6 +1,6 @@
 <header class="clearfix">
   <h2 class="pull-left">Locations for <%= @client.name %></h2>
-  <%= link_to 'New Location', new_client_location_path(@client), class: "btn btn-success btn-lg pull-right" %>
+  <%#= link_to 'New Location', new_client_location_path(@client), class: "btn btn-success btn-lg pull-right" %>
 </header>
 
 <% if flash[:notice] %>
@@ -47,7 +47,7 @@
           <%= fetch_phone_number("ppc", location.phone_numbers) %>
         </td>
         <td><%= link_to 'Edit', edit_location_path(location), class: "btn btn-default" %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
+        <td><%#= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
       </tr>
 
     <% end %>
