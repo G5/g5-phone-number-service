@@ -9,6 +9,7 @@ gem "microformats2"
 gem 'g5_updatable', '~> 0.5.1'
 gem 'g5_authenticatable'
 gem "pg"
+gem 'g5_heroku_app_name_formatter'
 
 group :assets do
   gem "sass-rails", "~> 4.0.0"

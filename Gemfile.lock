@@ -110,6 +110,7 @@ GEM
       activesupport
       g5_authentication_client (>= 0.2)
       httparty
+    g5_heroku_app_name_formatter (0.0.2)
     g5_updatable (0.5.1)
       active_model_serializers (~> 0.8)
       g5_foundation_client (>= 0.2.0)
@@ -289,6 +290,7 @@ DEPENDENCIES
   faker
   foreman
   g5_authenticatable
+  g5_heroku_app_name_formatter
   g5_updatable (~> 0.5.1)
   honeybadger
   jbuilder (~> 1.2)
