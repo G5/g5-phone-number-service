@@ -3,6 +3,6 @@ class PhoneNumber < ActiveRecord::Base
 
   belongs_to :location
 
-  NUMBER_KINDS = ["Default", "Mobile", "PPC"]
+  NUMBER_KINDS = ["default", "mobile", "ppc"]
 
 end

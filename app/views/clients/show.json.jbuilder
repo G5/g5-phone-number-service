@@ -3,10 +3,6 @@ json.array! @locations do |location|
   json.urn location.urn
 
   @number_kinds.each do |number_kind|
-    json.set! number_kind, fetch_phone_number(number_kind, location.phone_numbers)
+    json.set! number_kind + "_number", fetch_phone_number(number_kind, location.phone_numbers)
   end
-  
-
-
-  
 end
