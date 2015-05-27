@@ -8,7 +8,7 @@ class ClientsController < ApplicationController
   def show
     @client = G5Updatable::Client.find_by_urn(params[:id])
 
-    @locations = Location.includes(:phone_numbers).where(client_uid: @client.uid)
+    @locations = Location.includes(:phone_numbers).where(client_uid: @client.uid).order(:name)
 
     @number_kinds = PhoneNumber::NUMBER_KINDS
 
