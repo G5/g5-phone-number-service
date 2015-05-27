@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
       @client = Client.find(params[:client_id])
       @locations = @client.locations
     else
-      @locations = Location.all
+      @locations = Location.includes(:phone_numbers).all
     end
 
     respond_to do |format|

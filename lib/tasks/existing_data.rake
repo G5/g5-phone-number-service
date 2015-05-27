@@ -9,7 +9,6 @@ namespace :existing_data do
       formatter = G5HerokuAppNameFormatter::Formatter.new(client.urn, ["cpns"])
 
       url = "#{formatter.cpns_url}/summary"
-      # url = "https://g5-cpns-1tde4mj5-american-self.herokuapp.com/summary"
 
       response = Net::HTTP.get_response(URI.parse(url))
       if response.is_a?(Net::HTTPSuccess)
