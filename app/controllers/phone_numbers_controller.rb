@@ -11,7 +11,7 @@ class PhoneNumbersController < ApplicationController
     @phone_number.update_attributes(phone_number_params)
 
     if @phone_number.update_attributes(phone_number_params)
-      redirect_to client_path(@location.client), notice: 'Yeah, bitch!!.'
+      redirect_to client_path(@location.client), notice: "The #{@phone_number.number_kind} number for #{@location.name} has been updated"
     else
       render action: 'edit'
     end

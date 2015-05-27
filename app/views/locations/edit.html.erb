@@ -8,7 +8,7 @@
   <%= form_for numbers[index], url: {action: "update", controller: :phone_numbers, id: numbers[index].id }, html: {role: "form"} do |f| %>
     <%= f.label "#{number_kind} Number" %><br>
     <%= f.text_field :number, class: "form-control" %>
-    <%= f.submit "Update #{number_kind} number", class: "btn pull-left btn-success btn-lg" %>
+    <%= f.submit "Update #{number_kind} number", class: "btn pull-left btn-success" %>
   <% end %>
 </div>
 <% end %>
