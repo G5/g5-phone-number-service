@@ -1,6 +1,6 @@
 <header class="clearfix">
   <h2 class="pull-left">Locations</h2>
-  <%= link_to 'New Location', new_client_location_path(@client), class: "btn btn-success btn-lg pull-right" if @client %>
+  <%= link_to 'Group By Client', clients_path, class: "btn btn-success btn-lg pull-right" %>
 </header>
 
 <% if flash[:notice] %>
