@@ -1,5 +1,21 @@
 <h2>Edit Location</h2>
 
+<p>
+  <%= link_to 'Back To Location List', client_path(@location.client), class: "btn btn-success btn-lg" %>
+</p>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
 <% PhoneNumber::NUMBER_KINDS.each_with_index do |number_kind, index| %>
 <div class="form-group phone-numbers">
   <% numbers = [] %>
@@ -8,7 +24,7 @@
   <%= form_for numbers[index], url: {action: "update", controller: :phone_numbers, id: numbers[index].id }, html: {role: "form"} do |f| %>
     <%= f.label "#{number_kind} Number" %><br>
     <%= f.text_field :number, class: "form-control" %>
-    <%= f.submit "Update #{number_kind} number", class: "btn pull-left btn-success" %>
+    <%= f.submit "Update #{number_kind} number", class: "btn pull-left btn-primary" %>
   <% end %>
 </div>
 <% end %>
