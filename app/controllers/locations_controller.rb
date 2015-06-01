@@ -12,9 +12,11 @@ class LocationsController < ApplicationController
       @locations = Location.includes(:phone_numbers).all
     end
 
+    @number_kinds = PhoneNumber::NUMBER_KINDS
+    
     respond_to do |format|
       format.html
-      format.json { render json: @locations }
+      format.json
     end
   end
 
