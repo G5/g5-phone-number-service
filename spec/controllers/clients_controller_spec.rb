@@ -52,24 +52,24 @@ describe ClientsController do
         @json_feed = JSON.parse(response.body)
       end
 
-      it "returns single layer of json full of relavent locations" do
-        expect(@json_feed.length).to eq(2)
+      it "returns json full of relavent locations" do
+        expect(@json_feed['locations'].length).to eq(2)
       end
 
       it "includes the location urn in each object" do
-        expect(@json_feed.first['urn']).to eq(@loc1.urn)
+        expect(@json_feed['locations'].first['urn']).to eq(@loc1.urn)
       end
 
       it "includes relevant phone numbers for each object" do
-        expect(@json_feed.first['default_number']).to eq(@number1.number)
+        expect(@json_feed['locations'].first['default_number']).to eq(@number1.number)
       end
 
       it "includes relevant phone numbers for each object" do
-        expect(@json_feed.last['mobile_number']).to eq(@number2.number)
+        expect(@json_feed['locations'].last['mobile_number']).to eq(@number2.number)
       end
 
       it "returns an empty string instead of nil for non existent numbers" do
-        expect(@json_feed.first['ppc_number']).to eq("")
+        expect(@json_feed['locations'].first['ppc_number']).to eq("")
       end
     end
   end
