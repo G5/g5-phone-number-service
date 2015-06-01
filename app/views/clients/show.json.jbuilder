@@ -1,4 +1,4 @@
-json.array! @locations do |location|
+json.locations @locations do |location|
   json.name location.name
   json.urn location.urn
 
