@@ -38,14 +38,28 @@ describe LocationsController do
   end
 
   describe "GET #show" do
-    let!(:location) { Fabricate(:location) }
-    it "renders a location as json" do
-      get :show, id: location.id
-      expect(response.body).to eq(location.to_json)
+    render_views
+    before do
+      @test_client = G5Updatable::Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity", uid: "blah-blah-blah"
+      @loc = Location.create! urn: "g5-cl-6cx7aaa-gigity-1", uid: "uid-1", name: "Gigity 1", client_uid: @test_client.uid
+      @number1 = PhoneNumber.create! number: "1234567890", number_kind: "default", location_id: @loc.id
+      @number2 = PhoneNumber.create! number: "9876543210", number_kind: "mobile",  location_id: @loc.id
     end
+
+    let(:expected_response) { { name: @loc.name,
+                                urn: @loc.urn, 
+                                default_number: @number1.number, 
+                                mobile_number: @number2.number, 
+                                ppc_number: "" }.to_json }
+
+    it "renders a location as json" do
+      get :show, format: :json, id: @loc.id
+      expect(response.body).to eq(expected_response)
+    end
+
     it "supports lookup by urn" do
-      get :show, id: location.urn
-      expect(response.body).to eq(location.to_json)
+      get :show, format: :json, id: @loc.urn
+      expect(response.body).to eq(expected_response)
     end
   end
 end

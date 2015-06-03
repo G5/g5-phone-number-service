@@ -21,8 +21,11 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @location = Location.find_by_urn(params[:id]) || Location.find(params[:id])
-    render json: @location
+    @location = Location.includes(:phone_numbers).find_by_urn(params[:id]) || Location.includes(:phone_numbers).find(params[:id])
+    @number_kinds = PhoneNumber::NUMBER_KINDS
+    respond_to do |format|
+      format.json
+    end
   end
 
   def edit
