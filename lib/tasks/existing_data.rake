@@ -17,9 +17,24 @@ namespace :existing_data do
         if data["summary"].length > 0
           data["summary"].each do |entry|
             location = Location.find_by_urn(entry["urn"]) if entry["urn"] && !entry["urn"].blank?
-            location.phone_numbers.create(number_kind: "default", number: entry["default_number"] ) if location
-            location.phone_numbers.create(number_kind: "mobile", number: entry["mobile_number"] ) if location
-            location.phone_numbers.create(number_kind: "ppc", number: entry["ppc_number"] ) if location
+
+            next unless location
+
+            ["default", "mobile", "ppc"].each do |kind|
+              existing_number = location.phone_numbers.find_by_number_kind(kind)
+
+              if existing_number && existing_number.number == entry["#{kind}_number"]
+                # do nothing
+              elsif existing_number && existing_number.number != entry["#{kind}_number"]
+                # update number if it doesn't match
+                existing_number.update_attribute(:number, entry["#{kind}_number"])
+              else
+                # create number if it doesn't exist
+                location.phone_numbers.create(number_kind: kind, number: entry["#{kind}_number"] )
+              end
+                  
+            end
+
           end
         end
 
