@@ -11,6 +11,8 @@ class PhoneNumbersController < ApplicationController
     @phone_number.update_attributes(phone_number_params)
 
     if @phone_number.update_attributes(phone_number_params)
+      expire_action(:controller => '/clients', :action => 'show', :id => @location.client.urn, format: :json)
+
       redirect_to edit_location_path(@location), notice: "The #{@phone_number.number_kind} number for #{@location.name} has been updated"
     else
       render action: 'edit'

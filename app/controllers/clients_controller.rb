@@ -1,6 +1,8 @@
 class ClientsController < ApplicationController
   before_filter :authenticate_user!, except: :show
 
+  caches_action :show, if: Proc.new { request.format.json? }
+
   def index
     @clients = G5Updatable::Client.all.order(:name)
   end

@@ -6,3 +6,4 @@ json.locations @locations do |location|
     json.set! number_kind + "_number", fetch_phone_number(number_kind, location.phone_numbers)
   end
 end
+
