@@ -1,0 +1,4 @@
+test:
+  adapter: postgresql
+  database: g5_phone_number_service_test
+  username: postgres

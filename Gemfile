@@ -7,6 +7,9 @@ gem "turbolinks"
 gem "jbuilder", "~> 1.2"
 gem "microformats2"
 gem 'g5_updatable', '~> 0.5.1'
+gem 'g5_authenticatable'
+gem "pg"
+gem 'g5_heroku_app_name_formatter'
 
 group :assets do
   gem "sass-rails", "~> 4.0.0"
@@ -19,12 +22,18 @@ group :development, :test do
   gem "dotenv-rails", "~> 0.9.0"
   gem "sqlite3"
   gem "rspec-rails", "~> 2.14.0"
-  gem "capybara"
-  gem "poltergeist"
-  gem "database_cleaner", "< 1.1.0"
   gem "foreman"
   gem "fabrication"
   gem "faker"
+  gem "pry"
+end
+
+group :test do
+  gem "capybara"
+  gem "poltergeist"
+  gem "database_cleaner"
+  gem 'factory_girl_rails'
+  gem 'webmock', require: 'webmock/rspec'
 end
 
 group :doc do
@@ -33,7 +42,6 @@ end
 
 group :production do
   gem "rails_12factor"
-  gem "pg"
   gem "newrelic_rpm"
   gem "honeybadger"
   gem "lograge"

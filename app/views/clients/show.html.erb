@@ -1,6 +1,6 @@
 <header class="clearfix">
-  <h2 class="pull-left">Locations</h2>
-  <%= link_to 'Group By Client', clients_path, class: "btn btn-success btn-lg pull-right" %>
+  <h2 class="pull-left">Locations for <%= @client.name %></h2>
+  <%= link_to 'Back to client list', clients_path, class: "btn btn-success btn-lg pull-right" %>
 </header>
 
 <% if flash[:notice] %>
@@ -23,9 +23,7 @@
       <th>Default Number</th>
       <th>Mobile Number</th>
       <th>PPC Number</th>
-      <% if @client %>
-        <th colspan="2">Actions</th>
-      <% end %>
+      <th colspan="2">Actions</th>
     </tr>
   </thead>
 
@@ -48,11 +46,8 @@
         <td class="p-tel p-tel-ppc" id="ppc_number--<%= fetch_phone_number("ppc", location.phone_numbers) %>">
           <%= fetch_phone_number("ppc", location.phone_numbers) %>
         </td>
-
-        <% if @client %>
-          <td><%= link_to 'Edit', edit_location_path(location), class: "btn btn-default" %></td>
-          <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
-        <% end %>
+        <td><%= link_to 'Edit', edit_location_path(location), class: "btn btn-default" %></td>
+        <td><%#= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
       </tr>
 
     <% end %>

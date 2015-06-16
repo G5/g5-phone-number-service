@@ -7,3 +7,10 @@
   background-color: red;
   display: table;
 }
+
+.form-group.phone-numbers{
+  clear:both;
+  padding:2em 0;
+}
+
+.form-group.phone-numbers .btn{ margin:1em 0; }
