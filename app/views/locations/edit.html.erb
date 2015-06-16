@@ -16,15 +16,25 @@
   </div>
 <% end %>
 
-<% PhoneNumber::NUMBER_KINDS.each_with_index do |number_kind, index| %>
-<div class="form-group phone-numbers">
-  <% numbers = [] %>
-  <% numbers[index] = @location.phone_numbers.find_or_create_by(number_kind: number_kind) %>
+<div class="row">
+  <% PhoneNumber::NUMBER_KINDS.each_with_index do |number_kind, index| %>
+    <div class="form-group phone-numbers">
+      <% numbers = [] %>
+      <% numbers[index] = @location.phone_numbers.find_or_create_by(number_kind: number_kind) %>
 
-  <%= form_for numbers[index], url: {action: "update", controller: :phone_numbers, id: numbers[index].id }, html: {role: "form"} do |f| %>
-    <%= f.label "#{number_kind} Number" %><br>
-    <%= f.text_field :number, class: "form-control" %>
-    <%= f.submit "Update #{number_kind} number", class: "btn pull-left btn-primary" %>
+      <%= form_for numbers[index], url: {action: "update", controller: :phone_numbers, id: numbers[index].id }, html: {role: "form"} do |f| %>
+        <%= f.label "#{number_kind} Number" %><br>
+        <%= f.text_field :number, class: "form-control" %>
+        <%= f.submit "Update #{number_kind} number", class: "btn pull-left btn-primary" %>
+      <% end %>
+    </div>
   <% end %>
 </div>
-<% end %>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <%= link_to 'Update All Numbers', @location.client, class: "btn btn-success btn-block update-all-numbers" %>
+  </div>
+</div>
