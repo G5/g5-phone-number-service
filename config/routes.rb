@@ -14,7 +14,7 @@ G5PhoneNumberService::Application.routes.draw do
   # Root will eventually point to 'clients#index' once we 
   # are sure we've correctly updated all the CPNS consumers
 
-  root 'locations#index'
+  root 'clients#index'
 
   get '/:id/locations', to: 'clients#show'
 end
