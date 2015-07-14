@@ -40,6 +40,12 @@
       <%= render 'ppc_numbers/form', {ppc_number: number, location: @location} %>
     </div>
   <% end %>
+
+  <% if @ppc_numbers.empty? %>
+    <div class="alert alert-danger">
+    <p>There are no PPC numbers for this location</p>
+    </div>
+  <% end %>
 </div>
 
 <hr />
