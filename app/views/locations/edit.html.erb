@@ -46,8 +46,7 @@
 
 <h3>New PPC number:</h3>
 <div class="row">
-  <% @new_ppc_number = @location.ppc_numbers.new() %>
-  <%= render 'ppc_numbers/form', {ppc_number: @new_ppc_number, location: @location} %>
+  <%= render 'ppc_numbers/form', {ppc_number: @location.ppc_numbers.new(), location: @location} %>
 </div>
 
 <hr />
