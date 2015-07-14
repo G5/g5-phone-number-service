@@ -34,6 +34,25 @@
 <hr />
 
 <div class="row">
+  <h3>PPC Numbers:</h3>
+  <% @ppc_numbers.each do |number| %>
+    <div class="form-group phone-numbers">
+      <%= render 'ppc_numbers/form', {ppc_number: number, location: @location} %>
+    </div>
+  <% end %>
+</div>
+
+<hr />
+
+<h3>New PPC number:</h3>
+<div class="row">
+  <% @new_ppc_number = @location.ppc_numbers.new() %>
+  <%= render 'ppc_numbers/form', {ppc_number: @new_ppc_number, location: @location} %>
+</div>
+
+<hr />
+
+<div class="row">
   <div class="col-md-4 col-md-offset-4">
     <%= link_to 'Update All Numbers', @location.client, class: "btn btn-success btn-block update-all-numbers" %>
   </div>

@@ -7,7 +7,9 @@ G5PhoneNumberService::Application.routes.draw do
     resources :locations
   end
 
-  resources :locations
+  resources :locations do
+    resources :ppc_numbers
+  end
 
   resources :phone_numbers
 

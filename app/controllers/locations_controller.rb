@@ -32,6 +32,10 @@ class LocationsController < ApplicationController
     @location = Location.find_by_urn(params[:id]) || Location.find(params[:id])
 
     @numbers = @location.phone_numbers
+
+    @ppc_numbers = @location.ppc_numbers
+
+    # @new_ppc_number = @location.ppc_numbers.new()
   end
 
 end
