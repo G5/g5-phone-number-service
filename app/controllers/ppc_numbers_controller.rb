@@ -1,4 +1,7 @@
 class PpcNumbersController < ApplicationController
+
+  before_filter :authenticate_user!
+  
   def create
     @location = Location.find_by_id(params[:location_id]) || Location.find_by_urn(params[:location_id])
     @ppc_number = @location.ppc_numbers.new(ppc_number_params)

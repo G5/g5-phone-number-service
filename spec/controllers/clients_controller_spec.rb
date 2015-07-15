@@ -34,6 +34,8 @@ describe ClientsController do
       @loc2 = Location.create! urn: "g5-cl-6cx7bbb-gigity-2", uid: "uid-2", name: "Gigity 2", client_uid: @test_client.uid
       @number1 = PhoneNumber.create! number: "1234567890", number_kind: "default", location_id: @loc1.id
       @number2 = PhoneNumber.create! number: "9876543210", number_kind: "mobile",  location_id: @loc2.id
+      @number3 = PpcNumber.create! number: "1111111111", cpm_code: "google",  location_id: @loc1.id
+      @number4 = PpcNumber.create! number: "2222222222", cpm_code: "bing",  location_id: @loc2.id
     end
     
     it "sets the client" do
@@ -69,7 +71,11 @@ describe ClientsController do
       end
 
       it "returns an empty string instead of nil for non existent numbers" do
-        expect(@json_feed['locations'].first['ppc_number']).to eq("")
+        expect(@json_feed['locations'].first['mobile_number']).to eq("")
+      end
+
+      it "returns the relevant PPC numbers" do
+        expect(@json_feed['locations'].first['google']).to eq(@number3.number)
       end
     end
   end

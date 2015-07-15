@@ -1,5 +1,7 @@
 class PhoneNumbersController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def update
     @phone_number = PhoneNumber.find(params[:id])
     @location = @phone_number.location
