@@ -22,7 +22,6 @@
       <th>Name</th>
       <th>Default Number</th>
       <th>Mobile Number</th>
-      <th>PPC Number</th>
       <th colspan="2">Actions</th>
     </tr>
   </thead>
@@ -42,9 +41,6 @@
         </td>
         <td class="p-tel p-tel-mobile" id="mobile_number--<%= fetch_phone_number("mobile", location.phone_numbers) %>">
           <%= fetch_phone_number("mobile", location.phone_numbers) %>
-        </td>
-        <td class="p-tel p-tel-ppc" id="ppc_number--<%= fetch_phone_number("ppc", location.phone_numbers) %>">
-          <%= fetch_phone_number("ppc", location.phone_numbers) %>
         </td>
         <td><%= link_to 'Edit', edit_location_path(location), class: "btn btn-default" %></td>
         <td><%#= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
