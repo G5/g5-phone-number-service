@@ -24,6 +24,18 @@ class PpcNumbersController < ApplicationController
     end
   end
 
+  def destroy
+    ppc_number = PpcNumber.find(params[:id])
+    @location = ppc_number.location
+
+    if ppc_number.destroy
+      expire_cached_json
+      redirect_to edit_location_path(@location), notice: 'PPC Number was successfully deleted.' 
+    else
+      redirect_to edit_location_path(@location), notice: 'The PPC Number could not be deleted.' 
+    end
+  end
+
   private
 
   def ppc_number_params
