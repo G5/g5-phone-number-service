@@ -1,11 +1,21 @@
 massUpdate = ->
   $(".update-all-numbers").click( (e) ->
     # e.preventDefault()
-    $("form.edit_phone_number").each( ->
+    $("form.edit_phone_number, form.edit_ppc_number").each( ->
       formDetails = $(this).serialize()
       action = $(this).attr('action')
       $.ajax( {
                 type: "PUT",
+                url: action,
+                data: formDetails
+              } )
+    )
+
+    $("form.new_ppc_number").each( ->
+      formDetails = $(this).serialize()
+      action = $(this).attr('action')
+      $.ajax( {
+                type: "POST",
                 url: action,
                 data: formDetails
               } )
