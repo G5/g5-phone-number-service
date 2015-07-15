@@ -1,5 +1,9 @@
 G5PhoneNumberService::Application.routes.draw do
 
+  get 'ppc_numbers/create'
+
+  get 'ppc_numbers/update'
+
   mount G5Authenticatable::Engine => '/g5_auth'
   mount G5Updatable::Engine => '/g5_updatable'
 
