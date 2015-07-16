@@ -1,7 +1,7 @@
 class PpcNumbersController < ApplicationController
 
   before_filter :authenticate_user!
-  
+
   def create
     @location = Location.find_by_id(params[:location_id]) || Location.find_by_urn(params[:location_id])
     @ppc_number = @location.ppc_numbers.new(ppc_number_params)
@@ -10,7 +10,8 @@ class PpcNumbersController < ApplicationController
       expire_cached_json
       redirect_to edit_location_path(@location), notice: "The #{@ppc_number.cpm_code} number for #{@location.name} has been updated"
     else
-      render action: 'edit'
+      # render action: 'edit'
+      redirect_to edit_location_path(@location), alert: "The PPC number was not saved. You must enter a unique CPM code and a phone number."
     end
   end
 
@@ -23,7 +24,8 @@ class PpcNumbersController < ApplicationController
       expire_cached_json
       redirect_to edit_location_path(@location), notice: "The #{@ppc_number.cpm_code} number for #{@location.name} has been updated"
     else
-      render action: 'edit'
+      # render action: 'edit'
+      redirect_to edit_location_path(@location), alert: "The PPC number was not saved. You must enter a unique CPM code and a phone number."
     end
   end
 
@@ -35,7 +37,7 @@ class PpcNumbersController < ApplicationController
       expire_cached_json
       redirect_to edit_location_path(@location), notice: 'PPC Number was successfully deleted.' 
     else
-      redirect_to edit_location_path(@location), notice: 'The PPC Number could not be deleted.' 
+      redirect_to edit_location_path(@location), alert: 'The PPC Number could not be deleted.' 
     end
   end
 
