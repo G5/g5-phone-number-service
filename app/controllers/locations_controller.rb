@@ -34,8 +34,6 @@ class LocationsController < ApplicationController
     @numbers = @location.phone_numbers
 
     @ppc_numbers = @location.ppc_numbers
-
-    # @new_ppc_number = @location.ppc_numbers.new()
   end
 
 end
