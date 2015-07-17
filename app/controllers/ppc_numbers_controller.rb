@@ -18,7 +18,6 @@ class PpcNumbersController < ApplicationController
   def update
     @ppc_number = PpcNumber.find(params[:id])
     @location = @ppc_number.location
-    @ppc_number.update_attributes(ppc_number_params)
 
     if @ppc_number.update_attributes(ppc_number_params)
       expire_cached_json
