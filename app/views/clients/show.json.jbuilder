@@ -11,5 +11,6 @@ json.locations @locations do |location|
   end
 
   json.ppc_number ""
+  
 end
 
