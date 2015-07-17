@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
   before_filter :authenticate_user!, except: :show
 
-  caches_action :show, if: Proc.new { request.format.json? }
+  # caches_action :show, if: Proc.new { request.format.json? }
 
   def index
     @clients = G5Updatable::Client.all.order(:name)
@@ -11,6 +11,8 @@ class ClientsController < ApplicationController
     @client = G5Updatable::Client.find_by_urn(params[:id])
 
     @locations = Location.includes(:phone_numbers, :ppc_numbers).where(client_uid: @client.uid).order(:name)
+
+    @locations = @client.locations.order(:name)
 
     @number_kinds = PhoneNumber::NUMBER_KINDS
 
