@@ -9,5 +9,7 @@ json.locations @locations do |location|
   location.ppc_numbers.each do |ppc_number|
     json.set! ppc_number.cpm_code, ppc_number.number
   end
+
+  json.ppc_number ""
 end
 
