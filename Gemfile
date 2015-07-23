@@ -7,6 +7,7 @@ gem "turbolinks"
 gem "jbuilder", "~> 1.2"
 gem "microformats2"
 gem 'g5_updatable', '~> 0.5.1'
+gem 'rack-cors', :require => 'rack/cors'
 gem 'g5_authenticatable'
 gem "pg"
 gem 'g5_heroku_app_name_formatter'
