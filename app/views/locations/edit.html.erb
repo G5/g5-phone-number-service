@@ -18,6 +18,7 @@
 
 <div class="row">
   <% PhoneNumber::NUMBER_KINDS.each_with_index do |number_kind, index| %>
+    <% next if number_kind == "ppc" %>
     <div class="form-group phone-numbers">
       <% numbers = [] %>
       <% numbers[index] = @location.phone_numbers.find_or_create_by(number_kind: number_kind) %>
@@ -25,6 +26,7 @@
       <%= form_for numbers[index], url: {action: "update", controller: :phone_numbers, id: numbers[index].id }, html: {role: "form"} do |f| %>
         <%= f.label "#{number_kind} Number" %><br>
         <%= f.text_field :number, class: "form-control" %>
+        <%= f.hidden_field :number_kind, value: number_kind %>
         <%= f.submit "Update #{number_kind} number", class: "btn pull-left btn-primary" %>
       <% end %>
     </div>
@@ -52,7 +54,7 @@
 
 <h3>New PPC number:</h3>
 <div class="row">
-  <%= render 'ppc_numbers/form', {ppc_number: @location.ppc_numbers.new(), location: @location} %>
+  <%= render 'ppc_numbers/form', {ppc_number: @location.phone_numbers.new(), location: @location} %>
 </div>
 
 <hr />

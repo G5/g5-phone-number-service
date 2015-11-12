@@ -25,7 +25,7 @@ describe ClientsController do
       end
     end
   end
-  
+
   describe "GET 'show'" do
     render_views
     before do
@@ -34,10 +34,10 @@ describe ClientsController do
       @loc2 = Location.create! urn: "g5-cl-6cx7bbb-gigity-2", uid: "uid-2", name: "Gigity 2", client_uid: @test_client.uid
       @number1 = PhoneNumber.create! number: "1234567890", number_kind: "default", location_id: @loc1.id
       @number2 = PhoneNumber.create! number: "9876543210", number_kind: "mobile",  location_id: @loc2.id
-      @number3 = PpcNumber.create! number: "1111111111", cpm_code: "google",  location_id: @loc1.id
-      @number4 = PpcNumber.create! number: "2222222222", cpm_code: "bing",  location_id: @loc2.id
+      @number3 = PhoneNumber.create! number: "1111111111", number_kind: "ppc", cpm_code: "google",  location_id: @loc1.id
+      @number4 = PhoneNumber.create! number: "2222222222", number_kind: "ppc", cpm_code: "bing",  location_id: @loc2.id
     end
-    
+
     it "sets the client" do
       get :show, id: @test_client.urn
       expect(assigns(:client)).to eq(@test_client)

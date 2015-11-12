@@ -1,4 +1,4 @@
-<%= form_for [location, ppc_number], html: {role: "form"} do |f| %>
+<%= form_for [ppc_number], html: {role: "form"} do |f| %>
 
   <div class="form-group col-md-4">
     <%= f.label :cpm_code %><br>
@@ -13,11 +13,13 @@
     <%= f.text_field :notes, class: "form-control" %>
   </div>
   <div class="form-group col-md-12">
+    <%= f.hidden_field :number_kind, value: "ppc" %>
+    <%= f.hidden_field :location_id, value: @location.id %>
     <% if ppc_number.id.nil? %>
       <%= f.submit "Create PPC Number", class: "btn btn-primary pull-left" %>
     <% else %>
       <%= f.submit "Update PPC Number", class: "btn btn-primary pull-left" %>
-      <%= link_to 'Delete PPC Number', location_ppc_number_path(@location, ppc_number), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger pull-right" %>
+      <%= link_to 'Delete PPC Number', phone_number_path(ppc_number), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger pull-right" %>
     <% end %>
   </div>
 

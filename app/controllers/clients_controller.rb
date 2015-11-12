@@ -10,13 +10,13 @@ class ClientsController < ApplicationController
   def show
     @client = G5Updatable::Client.find_by_urn(params[:id])
 
-    @locations = Location.includes(:phone_numbers, :ppc_numbers).where(client_uid: @client.uid).order(:name)
+    @locations = Location.includes(:phone_numbers).where(client_uid: @client.uid).order(:name)
 
     @number_kinds = PhoneNumber::NUMBER_KINDS
 
     respond_to do |format|
-      format.html 
-      format.json 
+      format.html
+      format.json
     end
   end
 
