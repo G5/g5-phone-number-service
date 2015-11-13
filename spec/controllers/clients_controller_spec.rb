@@ -63,11 +63,11 @@ describe ClientsController do
       end
 
       it "includes relevant phone numbers for each object" do
-        expect(@json_feed['locations'].first['default_number']).to eq(@number1.number)
+        expect(@json_feed['locations'].first['default_number']).to eq(@number1.display_number)
       end
 
       it "includes relevant phone numbers for each object" do
-        expect(@json_feed['locations'].last['mobile_number']).to eq(@number2.number)
+        expect(@json_feed['locations'].last['mobile_number']).to eq(@number2.display_number)
       end
 
       it "returns an empty string instead of nil for non existent numbers" do

@@ -7,7 +7,7 @@ describe ApplicationHelper do
                       PhoneNumber.new(number_kind: "ppc",     number: nil) ] }
 
     it "returns the phone number you're looking for" do
-      expect(helper.fetch_phone_number('default', numbers)).to eq("1234567890")
+      expect(helper.fetch_phone_number('default', numbers)).to eq("123-456-7890")
     end
 
     it "returns an empty string if a given number is nil" do
