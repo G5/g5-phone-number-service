@@ -70,7 +70,7 @@ describe PhoneNumbersController do
 
       it "updates the number" do
         response
-        expect(number.reload.number).to eq("987-654-1111")
+        expect(number.reload.number).to eq("9876541111")
       end
 
       it "redirects to edit location" do
@@ -92,7 +92,7 @@ describe PhoneNumbersController do
 
       it "does not update the number" do
         response
-        expect(number.reload.number).to eq("987-654-3210")
+        expect(number.reload.number).to eq("9876543210")
       end
 
       it "redirects to edit location" do

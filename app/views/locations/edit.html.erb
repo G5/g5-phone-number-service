@@ -25,7 +25,7 @@
 
       <%= form_for numbers[index], url: {action: "update", controller: :phone_numbers, id: numbers[index].id }, html: {role: "form"} do |f| %>
         <%= f.label "#{number_kind} Number" %><br>
-        <%= f.text_field :number, class: "form-control" %>
+        <%= f.text_field :number, class: "form-control", value:numbers[index].display_number %>
         <%= f.hidden_field :number_kind, value: number_kind %>
         <%= f.submit "Update #{number_kind} number", class: "btn pull-left btn-primary" %>
       <% end %>
