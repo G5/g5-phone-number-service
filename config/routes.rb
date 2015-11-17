@@ -10,6 +10,16 @@ G5PhoneNumberService::Application.routes.draw do
   resources :locations
   resources :phone_numbers
 
+  #scope "/api/v1" do
+    #resources :numbers, only: :show, defaults: {format: :json}
+  #end
+
+  namespace :api do
+    namespace :v1 do
+      resources :numbers, only: :show, param: :phone_number, defaults: {format: :json}
+    end
+  end
+
   # Root will eventually point to 'clients#index' once we 
   # are sure we've correctly updated all the CPNS consumers
 

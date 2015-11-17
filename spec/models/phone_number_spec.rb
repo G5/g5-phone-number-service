@@ -9,7 +9,6 @@ describe PhoneNumber do
     num = PhoneNumber.new(number: "+01 (321) 456-7890")
     num.save
     expect(num.reload.number).to eq("013214567890")
-
   end
 
   context "with a ppc number" do

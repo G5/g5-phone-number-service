@@ -3,7 +3,7 @@ class PhoneNumber < ActiveRecord::Base
   belongs_to :location
 
   before_validation do
-    self.number = number.gsub(/\D/, "") if attribute_present?("number")
+    self.number = sanitized_number if attribute_present?("number")
   end
 
   validates :number, presence: true
@@ -24,4 +24,17 @@ class PhoneNumber < ActiveRecord::Base
     pattern = /\A(\d{3})(\d{3})(\d*?)\Z/
     self.number.gsub(pattern,'\1-\2-\3')
   end
+
+  def sanitized_number
+    PhoneNumber.sanitize_number(self.number)
+  end
+
+  def self.find_by_number(num)
+    PhoneNumber.where(number: sanitize_number(num)).first
+  end
+
+  def self.sanitize_number(num)
+    num.gsub(/\D/, "")
+  end
+
 end
