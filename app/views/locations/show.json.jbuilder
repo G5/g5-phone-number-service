@@ -7,5 +7,5 @@ json.urn @location.urn
 end
 
 @location.ppc_numbers.each do |ppc_number|
-  json.set! ppc_number.cpm_code, ppc_number.number
+  json.set! ppc_number.cpm_code, ppc_number.display_number
 end
