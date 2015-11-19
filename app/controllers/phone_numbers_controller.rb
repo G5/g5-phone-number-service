@@ -28,6 +28,18 @@ class PhoneNumbersController < ApplicationController
     end
   end
 
+  def destroy
+    number = PhoneNumber.find(params[:id])
+    @location = number.location
+
+    if number.destroy
+      expire_cached_json
+      redirect_to edit_location_path(@location), notice: 'The Number was successfully deleted.'
+    else
+      redirect_to edit_location_path(@location), alert: 'The Number could not be deleted.'
+    end
+  end
+
   private
 
   def phone_number_params

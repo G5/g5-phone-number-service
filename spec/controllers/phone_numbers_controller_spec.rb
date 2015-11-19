@@ -100,4 +100,16 @@ describe PhoneNumbersController do
       end
     end
   end
+
+  describe "DELETE #destroy", auth_controller: true do
+    let(:response) { post :destroy, params }
+    let!(:number) { PhoneNumber.create(location_id: location.id, number: "987-654-3210", number_kind: "mobile") }
+    let(:params) { { id: number.id } }
+
+    it "deletes the number" do
+      expect(PhoneNumber.all.count).to eq(1)
+      response
+      expect(PhoneNumber.all.count).to eq(0)
+    end
+  end
 end
