@@ -33,6 +33,6 @@ module ApplicationHelper
 
   def fetch_phone_number(number_kind, numbers)
     selected_number = numbers.select { |number| number.number_kind == number_kind }
-    selected_number.first.try(:number) || ""
+    selected_number.first.try(:display_number) || ""
   end
 end

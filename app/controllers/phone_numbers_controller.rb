@@ -15,10 +15,35 @@ class PhoneNumbersController < ApplicationController
     end
   end
 
+  def create
+    @location = Location.find_by_id(params[:phone_number][:location_id]) || Location.find_by_urn(params[:location_id])
+    @number = @location.phone_numbers.new(phone_number_params)
+
+    if @number.save
+      expire_cached_json
+      redirect_to edit_location_path(@location), notice: "The #{@number.cpm_code} number for #{@location.name} has been created"
+    else
+      # render action: 'edit'
+      redirect_to edit_location_path(@location), alert: "The PPC number was not saved. You must enter a unique CPM code and a phone number."
+    end
+  end
+
+  def destroy
+    number = PhoneNumber.find(params[:id])
+    @location = number.location
+
+    if number.destroy
+      expire_cached_json
+      redirect_to edit_location_path(@location), notice: 'The Number was successfully deleted.'
+    else
+      redirect_to edit_location_path(@location), alert: 'The Number could not be deleted.'
+    end
+  end
+
   private
 
   def phone_number_params
-    params.require(:phone_number).permit(:number)
+    params.require(:phone_number).permit(:number, :cpm_code, :notes, :number_kind)
   end
 
   def expire_cached_json

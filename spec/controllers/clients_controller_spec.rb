@@ -25,7 +25,7 @@ describe ClientsController do
       end
     end
   end
-  
+
   describe "GET 'show'" do
     render_views
     before do
@@ -35,10 +35,10 @@ describe ClientsController do
       @loc2 = Location.create! urn: "g5-cl-6cx7bbb-gigity-2", uid: "uid-2", name: "Gigity 2", client_uid: @test_client.uid, properties: {internal_branded_name: "Quagmire 2"}
       @number1 = PhoneNumber.create! number: "1234567890", number_kind: "default", location_id: @loc1.id
       @number2 = PhoneNumber.create! number: "9876543210", number_kind: "mobile",  location_id: @loc2.id
-      @number3 = PpcNumber.create! number: "1111111111", cpm_code: "google",  location_id: @loc1.id
-      @number4 = PpcNumber.create! number: "2222222222", cpm_code: "bing",  location_id: @loc2.id
+      @number3 = PhoneNumber.create! number: "1111111111", number_kind: "ppc", cpm_code: "google",  location_id: @loc1.id
+      @number4 = PhoneNumber.create! number: "2222222222", number_kind: "ppc", cpm_code: "bing",  location_id: @loc2.id
     end
-    
+
     it "sets the client" do
       get :show, id: @test_client.urn
       expect(assigns(:client)).to eq(@test_client)
@@ -64,11 +64,11 @@ describe ClientsController do
       end
 
       it "includes relevant phone numbers for each object" do
-        expect(@json_feed['locations'].first['default_number']).to eq(@number1.number)
+        expect(@json_feed['locations'].first['default_number']).to eq(@number1.display_number)
       end
 
       it "includes relevant phone numbers for each object" do
-        expect(@json_feed['locations'].last['mobile_number']).to eq(@number2.number)
+        expect(@json_feed['locations'].last['mobile_number']).to eq(@number2.display_number)
       end
 
       it "returns an empty string instead of nil for non existent numbers" do

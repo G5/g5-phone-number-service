@@ -13,7 +13,7 @@ class LocationsController < ApplicationController
     end
 
     @number_kinds = PhoneNumber::NUMBER_KINDS
-    
+
     respond_to do |format|
       format.html
       format.json
