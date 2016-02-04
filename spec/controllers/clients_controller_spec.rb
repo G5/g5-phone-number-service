@@ -79,6 +79,13 @@ describe ClientsController do
         expect(@json_feed['locations'].first['google']).to eq(@number3.number)
       end
     end
+
+    context "bad json requests" do
+      it "returns a 404 when passed a bad URN" do
+        get :show, id: "some-janky-urn", format: :json
+        expect(response.status).to eq(404)
+      end
+    end
   end
 
 end
