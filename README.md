@@ -6,8 +6,13 @@
 ## Setup
 
 1. Install all the required gems.
+
 ```bash
 $ bundle
+$ npm install
+$ npm run gulp
+// or to continually run the compiler in the background run
+$ npm run gulp:w
 ```
 
 1. Set up your database.
@@ -16,6 +21,24 @@ automatically uses sensible defaults for the primary ActiveRecord database.
 ```bash
 $ rake db:setup
 ```
+
+## Typescript
+
+There are parts of the application that are written in Typescript that get transpiled to ES5 (javascript). The
+transpiled files are not committed to the repo so you'll need to run the transpiler once before using those components.
+To do so run:
+
+```bash
+> npm install
+> npm run gulp
+// or to continually run the compiler in the background run
+> npm run gulp:w
+```
+
+## Heroku
+
+Because of the dependency on `npm` you need to add the nodejs buildpack when deploying to heroku. It needs to be the first
+buildpack as well.
 
 ## Authors
 

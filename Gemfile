@@ -3,7 +3,6 @@ ruby "2.2.2"
 
 gem 'rails', '~> 4.1.11'
 gem "jquery-rails"
-gem "turbolinks"
 gem "jbuilder", "~> 1.2"
 gem "microformats2"
 gem 'g5_updatable', '~> 0.5.1'
