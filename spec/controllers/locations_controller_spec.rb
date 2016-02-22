@@ -47,9 +47,9 @@ describe LocationsController do
     end
 
     let(:expected_response) { { name: @loc.name,
-                                urn: @loc.urn, 
-                                default_number: @number1.number, 
-                                mobile_number: @number2.number }.to_json }
+                                urn: @loc.urn,
+                                default_number: @number1.display_number,
+                                mobile_number: @number2.display_number }.to_json }
 
     it "renders a location as json" do
       get :show, format: :json, id: @loc.id

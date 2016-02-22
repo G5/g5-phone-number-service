@@ -40,7 +40,7 @@
           <%= location.name %>
         </td>
         <td class="p-tel p-tel-default" id="default_number--<%= fetch_phone_number("default", location.phone_numbers) %>">
-          <%= fetch_phone_number("default", location.phone_numbers) %>
+          <%= fetch_phone_number("default", location.phone_numbers).display_number %>
         </td>
         <td class="p-tel p-tel-mobile" id="mobile_number--<%= fetch_phone_number("mobile", location.phone_numbers) %>">
           <%= fetch_phone_number("mobile", location.phone_numbers) %>
