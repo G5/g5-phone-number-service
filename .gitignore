@@ -36,3 +36,6 @@ doc/*.svg
 
 # Ignore environment specific env
 .env.*
+.idea
+node_modules
+public/assets

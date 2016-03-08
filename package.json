@@ -1,0 +1,36 @@
+{
+  "name": "g5-dashboard",
+  "version": "2.9.0",
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "tsc:spec": "tsc -p spec/javascripts/ng2",
+    "tsc:spec:w": "tsc -w -p spec/javascripts/ng2",
+    "gulp": "gulp compile_source",
+    "gulp:spec": "gulp compile_spec",
+    "gulp:w": "gulp watch"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "angular2": "2.0.0-beta.3",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3",
+    "gulp": "^3.9.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.10.0",
+    "intl": "^1.0.1",
+    "merge2": "^1.0.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.0",
+    "systemjs": "0.19.6",
+    "tsd": "^0.6.5",
+    "typescript": "^1.7.3",
+    "zone.js": "0.5.11"
+  },
+  "engines": {
+    "node": "5.3.0"
+  },
+  "devDependencies": {
+    "jasmine-core": "2.4.1"
+  }
+}
