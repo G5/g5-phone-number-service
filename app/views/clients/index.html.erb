@@ -15,30 +15,65 @@
   </div>
 <% end %>
 
-<table class="table table-striped table-responsive">
-  <thead>
-    <tr>
-      <th>URN</th>
-      <th>Name</th>
-      <th colspan="2">Actions</th>
-    </tr>
-  </thead>
+<!-- 1. Load libraries -->
+<script src="/assets/intl/dist/Intl.js"></script>
+<script src="/assets/intl/locale-data/jsonp/en.js"></script>
 
-  <tbody>
+<script src="/assets/es6-shim/es6-shim.min.js"></script>
+<script src="/assets/systemjs/dist/system-polyfills.js"></script>
+<script src="/assets/systemjs/dist/system.src.js"></script>
+
+<script src="/assets/angular2/bundles/angular2-polyfills.js"></script>
+<script src="/assets/rxjs/bundles/Rx.js"></script>
+<script src="/assets/angular2/bundles/angular2.dev.js"></script>
+<script src="/assets/angular2/bundles/http.dev.js"></script>
+<script src="/assets/angular2/bundles/router.dev.js"></script>
+
+<script>
+  /**
+   * This is the module loading setup... but above we pre-load a bunch of libraries that
+   * we know we'll need to cut down on the latency of requesting one module at a time (it is actually very slow
+   * even for a small app like this).
+   *
+   * The above "bundles" (they call them bundles because they package a bunch of modules into a single file
+   * so that they can be included easily) will added to the SystemJS context relative to the current URL.  So if
+   * the URL for this page is http://localhost:3000/reports/g5-c-1slhp2tc-compass-rock-real-estate/monthly_overview
+   * then the bundles will register their modules like
+   * ```
+   * http://localhost:3000/reports/g5-c-1slhp2tc-compass-rock-real-estate/angular2/core
+   *  // for `angular2/core`
+   * ```
+   *
+   * So, in order to be able to load modules from different (absolute, non-parent relative) locations we need to map them.
+   */
+  System.config({
+    map: {
+      'clients_index': '/assets/ng2/clients_index',
+      'pipes': '/assets/ng2/pipes'
+    },
+    packages: {
+      'clients_index': {
+        format: 'register',
+        defaultExtension: 'js'
+      },
+      'pipes': {
+        format: 'register',
+        defaultExtension: 'js'
+      }
+    }
+  });
+  System.import('clients_index/clients_index.boot');
+
+</script>
+<script type="text/javascript">
+  window.clients = [
     <% @clients.each do |client| %>
-
-      <tr id="<%= client.urn %>" class="h-card">
-        <td class="p-uid" id="urn--<%= client.urn %>">
-          <%= client.urn %>
-        </td>
-        <td class="p-name" id="name--<%= client.name %>">
-          <%= client.name %>
-        </td>
-        <td><%= link_to 'Locations', client_path(client), class: "btn btn-default" %></td>
-        <td><%#= link_to 'Edit', edit_client_path(client), class: "btn btn-default" %></td>
-        <td><%#= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
-      </tr>
-
+    {
+      urn: <%= raw client.urn.to_json %>,
+      name: <%= raw client.name.to_json %>,
+    },
     <% end %>
-  </tbody>
-</table>
+  ];
+
+</script>
+<clients-index></clients-index>

@@ -15,37 +15,67 @@
   </div>
 <% end %>
 
-<table class="table table-striped table-responsive">
-  <thead>
-    <tr>
-      <th>URN</th>
-      <th>Name</th>
-      <th>Default Number</th>
-      <th>Mobile Number</th>
-      <th colspan="2">Actions</th>
-    </tr>
-  </thead>
+<!-- 1. Load libraries -->
+<script src="/assets/intl/dist/Intl.js"></script>
+<script src="/assets/intl/locale-data/jsonp/en.js"></script>
 
-  <tbody>
+<script src="/assets/es6-shim/es6-shim.min.js"></script>
+<script src="/assets/systemjs/dist/system-polyfills.js"></script>
+
+<script src="/assets/angular2/bundles/angular2-polyfills.js"></script>
+<script src="/assets/systemjs/dist/system.src.js"></script>
+<script src="/assets/rxjs/bundles/Rx.js"></script>
+<script src="/assets/angular2/bundles/angular2.dev.js"></script>
+<script src="/assets/angular2/bundles/http.dev.js"></script>
+<script src="/assets/angular2/bundles/router.dev.js"></script>
+
+<script>
+  /**
+   * This is the module loading setup... but above we pre-load a bunch of libraries that
+   * we know we'll need to cut down on the latency of requesting one module at a time (it is actually very slow
+   * even for a small app like this).
+   *
+   * The above "bundles" (they call them bundles because they package a bunch of modules into a single file
+   * so that they can be included easily) will added to the SystemJS context relative to the current URL.  So if
+   * the URL for this page is http://localhost:3000/reports/g5-c-1slhp2tc-compass-rock-real-estate/monthly_overview
+   * then the bundles will register their modules like
+   * ```
+   * http://localhost:3000/reports/g5-c-1slhp2tc-compass-rock-real-estate/angular2/core
+   *  // for `angular2/core`
+   * ```
+   *
+   * So, in order to be able to load modules from different (absolute, non-parent relative) locations we need to map them.
+   */
+  System.config({
+    map: {
+      'clients_show': '/assets/ng2/clients_show',
+      'pipes': '/assets/ng2/pipes'
+    },
+    packages: {
+      'clients_show': {
+        format: 'register',
+        defaultExtension: 'js'
+      },
+      'pipes': {
+        format: 'register',
+        defaultExtension: 'js'
+      }
+    }
+  });
+  // and to finish, let's boot the app!
+  System.import('clients_show/clients_show.boot');
+</script>
+<script type="text/javascript">
+  window.locations = [
     <% @locations.each do |location| %>
-
-      <tr id="<%= location.urn %>" class="h-card">
-        <td class="p-uid" id="urn--<%= location.urn %>">
-          <%= location.urn %>
-        </td>
-        <td class="p-name" id="name--<%= location.name %>">
-          <%= location.name %>
-        </td>
-        <td class="p-tel p-tel-default" id="default_number--<%= fetch_phone_number("default", location.phone_numbers) %>">
-          <%= fetch_phone_number("default", location.phone_numbers) %>
-        </td>
-        <td class="p-tel p-tel-mobile" id="mobile_number--<%= fetch_phone_number("mobile", location.phone_numbers) %>">
-          <%= fetch_phone_number("mobile", location.phone_numbers) %>
-        </td>
-        <td><%= link_to 'Edit', edit_location_path(location), class: "btn btn-default" %></td>
-        <td><%#= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
-      </tr>
-
+    {
+      urn: <%= raw location.urn.to_json %>,
+      name: <%= raw location.name.to_json %>,
+      internal_branded_name: <%= raw location.properties['internal_branded_name'].to_json %>,
+      mobile_phone: <%= raw fetch_phone_number('mobile', location.phone_numbers).to_json %>,
+      default_phone: <%= raw fetch_phone_number('default', location.phone_numbers).to_json %>,
+    },
     <% end %>
-  </tbody>
-</table>
+  ];
+</script>
+<clients-show></clients-show>
