@@ -7,10 +7,7 @@ G5PhoneNumberService::Application.routes.draw do
     resources :locations
   end
 
-  resources :locations do
-    resources :ppc_numbers
-  end
-
+  resources :locations
   resources :phone_numbers
 
   # Root will eventually point to 'clients#index' once we 
