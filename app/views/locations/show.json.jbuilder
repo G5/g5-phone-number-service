@@ -9,3 +9,5 @@ end
 @location.ppc_numbers.each do |ppc_number|
   json.set! ppc_number.cpm_code, ppc_number.number
 end
+
+json.set! "phone_number", @phone_number.number if @phone_number.present?

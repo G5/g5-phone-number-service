@@ -52,12 +52,12 @@ describe LocationsController do
                                 mobile_number: @number2.number }.to_json }
 
     it "renders a location as json" do
-      get :show, format: :json, id: @loc.id
+      get :show, format: :json, id: @loc.id, location_urn: @loc.urn
       expect(response.body).to eq(expected_response)
     end
 
     it "supports lookup by urn" do
-      get :show, format: :json, id: @loc.urn
+      get :show, format: :json, id: @loc.urn, location_urn: @loc.urn
       expect(response.body).to eq(expected_response)
     end
   end

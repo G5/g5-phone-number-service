@@ -26,6 +26,8 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.json
     end
+    @phone_number = NumberFinder.new(params).find_number
+    #render json: { phone_number: @phone_number }
   end
 
   def edit
