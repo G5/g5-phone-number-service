@@ -2,6 +2,7 @@ json.name @location.name
 json.urn @location.urn
 
 @number_kinds.each do |number_kind|
+  next if number_kind == "ppc"
   json.set! number_kind + "_number", fetch_phone_number(number_kind, @location.phone_numbers)
 end
 

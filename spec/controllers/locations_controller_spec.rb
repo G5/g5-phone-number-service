@@ -47,8 +47,8 @@ describe LocationsController do
     end
 
     let(:expected_response) { { name: @loc.name,
-                                urn: @loc.urn, 
-                                default_number: @number1.number, 
+                                urn: @loc.urn,
+                                default_number: @number1.number,
                                 mobile_number: @number2.number }.to_json }
 
     it "renders a location as json" do
