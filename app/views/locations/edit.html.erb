@@ -24,6 +24,16 @@
 
       <%= form_for numbers[index], url: {action: "update", controller: :phone_numbers, id: numbers[index].id }, html: {role: "form"} do |f| %>
         <%= f.label "#{number_kind} Number" %><br>
+
+        <%= f.radio_button :number_format, "national_format", :checked => (:number_format == 'national_format') %>
+        <%= f.label :number_format, 'National Format', :value => 'national_format' %>
+        <%= f.radio_button :number_format, "international_format", :checked => (:number_format == 'international_format') %>
+        <%= f.label :number_format, 'International Format', :value => 'international_format' %>
+        <%= f.radio_button :number_format, "contains_letters", :checked => (:number_format == 'contains_letters') %>
+        <%= f.label :number_format, 'Contains Letters', :value => 'contains_letters' %>
+        <%= f.radio_button :number_format, "australian", :checked => (:number_format == 'australian') %>
+        <%= f.label :number_format, 'Australian Format', :value => 'australian' %>
+
         <%= f.text_field :number, class: "form-control" %>
         <%= f.submit "Update #{number_kind} number", class: "btn pull-left btn-primary" %>
       <% end %>

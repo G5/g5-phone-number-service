@@ -10,6 +10,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'g5_authenticatable'
 gem "pg"
 gem 'actionpack-action_caching'
+gem 'global_phone'
 
 group :assets do
   gem "sass-rails", "~> 4.0.0"
@@ -26,6 +27,11 @@ group :development, :test do
   gem "fabrication"
   gem "faker"
   gem "pry"
+  gem 'rails-default-database'
+end
+
+group :development do
+  gem 'global_phone_dbgen', github: 'sstephenson/global_phone'
 end
 
 group :test do

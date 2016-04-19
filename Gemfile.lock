@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/sstephenson/global_phone.git
+  revision: dd0894061f58479884e6cfa2d00382542dc77d5a
+  specs:
+    global_phone (1.0.1)
+    global_phone_dbgen (1.0.1)
+      nokogiri (~> 1.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -199,6 +207,8 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.12)
       sprockets-rails (~> 2.0)
+    rails-default-database (1.0.8)
+      railties
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -292,6 +302,8 @@ DEPENDENCIES
   foreman
   g5_authenticatable
   g5_updatable (~> 0.5.1)
+  global_phone
+  global_phone_dbgen!
   honeybadger
   jbuilder (~> 1.2)
   jquery-rails
@@ -303,6 +315,7 @@ DEPENDENCIES
   pry
   rack-cors
   rails (~> 4.1.11)
+  rails-default-database
   rails_12factor
   rspec-rails (~> 2.14.0)
   sass-rails (~> 4.0.0)
@@ -313,4 +326,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
