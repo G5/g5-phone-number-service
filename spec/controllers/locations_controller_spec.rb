@@ -41,7 +41,7 @@ describe LocationsController do
     render_views
     before do
       @test_client = G5Updatable::Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity", uid: "blah-blah-blah"
-      @loc = Location.create! urn: "g5-cl-6cx7aaa-gigity-1", uid: "uid-1", name: "Gigity 1", client_uid: @test_client.uid, properties: { country: "AU" }
+      @loc = Location.create! urn: "g5-cl-6cx7aaa-gigity-1", uid: "uid-1", name: "Gigity 1", client_uid: @test_client.uid, properties: { country_code: "61" }
       @number1 = PhoneNumber.create! number: "1234567890", number_kind: "default", location_id: @loc.id
       @number2 = PhoneNumber.create! number: "9876543210", number_kind: "mobile",  location_id: @loc.id
     end

@@ -31,8 +31,8 @@ describe ClientsController do
     before do
 
       @test_client = G5Updatable::Client.create! "urn" => "g5-cl-6cx7rin-gigity", "name" => "Gigity", uid: "blah-blah-blah"
-      @loc1 = Location.create! urn: "g5-cl-6cx7aaa-gigity-1", uid: "uid-1", name: "Gigity 1", client_uid: @test_client.uid, properties: {internal_branded_name: "Quagmire 1", country: "AU"}
-      @loc2 = Location.create! urn: "g5-cl-6cx7bbb-gigity-2", uid: "uid-2", name: "Gigity 2", client_uid: @test_client.uid, properties: {internal_branded_name: "Quagmire 2", country: "CA"}
+      @loc1 = Location.create! urn: "g5-cl-6cx7aaa-gigity-1", uid: "uid-1", name: "Gigity 1", client_uid: @test_client.uid, properties: {internal_branded_name: "Quagmire 1", country_code: "61"}
+      @loc2 = Location.create! urn: "g5-cl-6cx7bbb-gigity-2", uid: "uid-2", name: "Gigity 2", client_uid: @test_client.uid, properties: {internal_branded_name: "Quagmire 2", country_code: "1"}
       @number1 = PhoneNumber.create! number: "1234567890", number_kind: "default", location_id: @loc1.id
       @number2 = PhoneNumber.create! number: "9876543210", number_kind: "mobile",  location_id: @loc2.id
       @number3 = PpcNumber.create! number: "1111111111", cpm_code: "google",  location_id: @loc1.id
