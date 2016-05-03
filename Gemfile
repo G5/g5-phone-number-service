@@ -26,6 +26,7 @@ group :development, :test do
   gem "fabrication"
   gem "faker"
   gem "pry"
+  gem 'thin'
 end
 
 group :test do
