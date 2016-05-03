@@ -3,7 +3,7 @@ class Location < G5Updatable::Location
   has_many :ppc_numbers
 
   def country_code_prefix
-    country_code = properties['country_code'] ? properties['country_code'] : "1"
+    country_code = properties['country_code'] || "1"
     "+#{country_code}-"
   end
 end
