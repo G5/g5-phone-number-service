@@ -5,11 +5,12 @@ gem 'rails', '~> 4.1.11'
 gem "jquery-rails"
 gem "jbuilder", "~> 1.2"
 gem "microformats2"
-gem 'g5_updatable', '~> 0.17.0.pre'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'g5_authenticatable'
 gem "pg"
 gem 'actionpack-action_caching'
+gem 'g5_updatable', '~> 0.17.0.pre'
+
 
 group :assets do
   gem "sass-rails", "~> 4.0.0"
