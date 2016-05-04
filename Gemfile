@@ -49,5 +49,5 @@ group :production do
 end
 
 source "https://#{ENV['FURY_AUTH']}@gem.fury.io/g5dev/" do
-  gem 'g5_updatable', '~> 0.17.0.pre'
+  gem 'g5_updatable', '~> 0.17.0'
 end

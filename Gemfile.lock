@@ -115,7 +115,7 @@ GEM
       activesupport
       g5_authentication_client (>= 0.2)
       httparty
-    g5_updatable (0.17.0.pre)
+    g5_updatable (0.17.0)
       active_model_serializers (~> 0.8)
       activesupport
       g5_foundation_client (~> 0.4.2)
@@ -299,7 +299,7 @@ DEPENDENCIES
   faker
   foreman
   g5_authenticatable
-  g5_updatable (~> 0.17.0.pre)!
+  g5_updatable (~> 0.17.0)!
   honeybadger
   jbuilder (~> 1.2)
   jquery-rails
