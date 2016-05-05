@@ -5,7 +5,6 @@ gem 'rails', '~> 4.1.11'
 gem "jquery-rails"
 gem "jbuilder", "~> 1.2"
 gem "microformats2"
-gem 'g5_updatable', '~> 0.5.1'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'g5_authenticatable'
 gem "pg"
@@ -47,4 +46,8 @@ group :production do
   gem "honeybadger"
   gem "lograge"
   gem "unicorn"
+end
+
+source "https://#{ENV['FURY_AUTH']}@gem.fury.io/g5dev/" do
+  gem 'g5_updatable', '~> 0.17.0'
 end
