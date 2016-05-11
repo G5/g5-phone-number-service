@@ -30,6 +30,15 @@ class LocationsController < ApplicationController
     #render json: { phone_number: @phone_number }
   end
 
+  def create
+    # used so the CPNS and g5-call-analytics (twilio) can have matching APIs
+    @number_kinds = PhoneNumber::NUMBER_KINDS
+    respond_to do |format|
+      format.json
+    end
+    @phone_number = NumberFinder.new(params).find_number
+  end
+
   def edit
     @location = Location.find_by_urn(params[:id]) || Location.find(params[:id])
 
