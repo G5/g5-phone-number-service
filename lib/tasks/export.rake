@@ -1,4 +1,5 @@
 namespace :export do
+  desc 'export the PNS data into a JSON that can be imported into g5-call-tracking'
   task phone_numbers: :environment do
     phones = Array.new
 
